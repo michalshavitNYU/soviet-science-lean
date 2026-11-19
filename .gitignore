@@ -1,0 +1,6 @@
+.lake/
+_site/
+status.json
+scripts/_audit.lean
+__pycache__/
+.DS_Store

@@ -1,0 +1,13 @@
+# Subject areas. Add a new one by appending here and creating entries/<id>/.
+- id: turbulence
+  name: Turbulence
+  blurb: Kolmogorov–Obukhov theory, hydrodynamic stability, wave turbulence.
+- id: probability
+  name: Probability
+  blurb: Foundations, limit theorems, stochastic processes, ergodic theory.
+- id: analysis
+  name: Analysis
+  blurb: Functional analysis, PDE, approximation theory, harmonic analysis.
+- id: high-energy
+  name: High-energy physics
+  blurb: Quantum field theory, renormalization, particle and nuclear theory.

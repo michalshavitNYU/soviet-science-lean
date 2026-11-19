@@ -1,0 +1,32 @@
+id: 1941-gelfand-normierte-ringe
+subject: analysis
+title_original: Normierte Ringe
+title_en: Normed rings
+authors: [I. M. Gelfand]
+year: 1941
+language: de
+source: Matematicheskii Sbornik (N.S.) 9(51) (1941), 3–24.
+summary: >
+  Founds the theory of commutative Banach algebras. This entry formalizes three basic
+  results: the spectrum is nonempty, the spectral radius formula, and the Gelfand–Mazur theorem.
+copyright:
+  status: in-copyright
+  note: Author died 2009. No translation is hosted here; the entry carries notes and Lean only.
+translation:
+  status: none
+lean:
+  module: SovietScience.Analysis.Gelfand1941NormedRings
+  results:
+    - label: Nonempty spectrum
+      decl: SovietScience.Gelfand1941.spectrum_nonempty
+    - label: Spectral radius formula
+      decl: SovietScience.Gelfand1941.spectral_radius_formula
+    - label: Gelfand–Mazur theorem
+      decl: SovietScience.Gelfand1941.gelfand_mazur
+contributors: [Michal Shavit]
+help_wanted: >
+  Formalize the paper's central result, the Gelfand representation: a commutative Banach algebra
+  maps into continuous functions on its space of maximal ideals, and x is invertible exactly when
+  its transform never vanishes. Mathlib defines the transform (`WeakDual.gelfandTransform`) and
+  proves it is an isomorphism for commutative C*-algebras (`gelfandStarTransform`); check what
+  else it has, then state the paper's theorems, citing the paper's own theorem numbers.

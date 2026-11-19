@@ -1,0 +1,8 @@
+title: Soviet Science, Verified
+tagline: >
+  An open dataset of Soviet mathematics and physics, with English translations and Lean 4
+  formalizations of the main results. Every theorem's status is checked by machine on each change.
+# Change these if the repository moves.
+repo_url: https://github.com/michalshavitNYU/soviet-science-lean
+site_url: https://michalshavitnyu.github.io/soviet-science-lean
+branch: main

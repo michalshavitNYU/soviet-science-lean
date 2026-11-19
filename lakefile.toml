@@ -1,0 +1,20 @@
+name = "SovietScience"
+version = "0.1.0"
+keywords = ["math", "physics", "translation"]
+defaultTargets = ["SovietScience"]
+
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+autoImplicit = false
+weak.linter.mathlibStandardSet = true
+weak.linter.style.header = false
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.35.0"
+
+[[lean_lib]]
+name = "SovietScience"

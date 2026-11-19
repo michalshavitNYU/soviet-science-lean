@@ -1,0 +1,26 @@
+id: 1933-kolmogorov-grundbegriffe
+subject: probability
+title_original: Grundbegriffe der Wahrscheinlichkeitsrechnung
+title_en: Foundations of the Theory of Probability
+authors: [A. N. Kolmogorov]
+year: 1933
+language: de
+source: Ergebnisse der Mathematik und ihrer Grenzgebiete, Bd. 2, Springer, Berlin, 1933. Russian edition 1936.
+summary: >
+  The axiomatic foundation of probability on measure theory. This entry formalizes
+  the 0-1 law from the Appendix.
+existing_translations:
+  - "Foundations of the Theory of Probability, trans. N. Morrison, Chelsea, New York, 1950."
+copyright:
+  status: in-copyright
+  note: Author died 1987. No translation is hosted here; the entry carries notes and Lean only.
+translation:
+  status: none
+lean:
+  module: SovietScience.Probability.Kolmogorov1933ZeroOne
+  results:
+    - label: Appendix — zero-one law (σ-algebra form)
+      decl: SovietScience.Kolmogorov1933.zero_one_law
+    - label: Appendix — zero-one law (random-variable form)
+      decl: SovietScience.Kolmogorov1933.zero_one_law_of_random_variables
+contributors: [Michal Shavit]

@@ -1,0 +1,23 @@
+id: 1928-kolmogorov-summen
+subject: probability
+title_original: Über die Summen durch den Zufall bestimmter unabhängiger Größen
+title_en: On sums of independent random quantities
+authors: [A. N. Kolmogorov]
+year: 1928
+language: de
+source: Mathematische Annalen 99 (1928), 309–319.
+summary: >
+  Introduces Kolmogorov's maximal inequality and uses it for convergence of random
+  series. The inequality is stated in Lean; the proof is open for contributors.
+copyright:
+  status: in-copyright
+  note: Author died 1987. No translation is hosted here.
+translation:
+  status: none
+lean:
+  module: SovietScience.Probability.Kolmogorov1928MaximalInequality
+  results:
+    - label: Maximal inequality
+      decl: SovietScience.Kolmogorov1928.maximal_inequality
+contributors: [Michal Shavit]
+help_wanted: Prove `maximal_inequality` (hint in the Lean file docstring).

@@ -1,0 +1,26 @@
+# Copy this folder to entries/<subject>/<id>/ and fill in every field.
+id: 1941-kolmogorov-local-structure   # <year>-<author>-<short-title>; must equal the folder name
+subject: turbulence                   # turbulence | probability | analysis | high-energy  (see subjects.yaml)
+title_original: Локальная структура турбулентности ...   # title in the original language
+title_en: The local structure of turbulence ...
+authors: [A. N. Kolmogorov]
+year: 1941
+language: ru                          # language of the original: ru, de, fr, ...
+source: Doklady Akademii Nauk SSSR 30 (1941), ...   # full citation of the original
+summary: >
+  Two or three sentences, in your own words, on what the work does.
+existing_translations: []             # citations of published English translations, if any
+copyright:
+  status: in-copyright                # public-domain | permission | in-copyright (see CONTRIBUTING.md)
+  note: ""                            # why public domain / who granted permission
+translation:
+  status: none                        # none | partial | complete  (partial/complete need translation.md)
+  translators: []
+  reviewed_by: []
+lean:                                 # delete this whole block if there is no Lean file
+  module: SovietScience.Turbulence.Kolmogorov1941LocalStructure
+  results:                            # each result you formalized, in the paper's numbering
+    - label: Theorem 1
+      decl: SovietScience.Kolmogorov1941.theorem_1
+contributors: [Your Name]
+# help_wanted: Describe an open proof or an untranslated section, if you want help.
