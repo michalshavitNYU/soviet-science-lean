@@ -1,0 +1,45 @@
+id: 1911-egorov-suites-fonctions-mesurables
+subject: analysis
+title_original: Sur les suites de fonctions mesurables
+title_en: On sequences of measurable functions
+authors: [D. F. Egorov]
+year: 1911
+language: fr
+source: >
+  Comptes rendus hebdomadaires des séances de l'Académie des sciences (Paris) 152 (1911),
+  244–246 (séance du 30 janvier 1911). Signed "D.-Th. Egoroff".
+links:
+  - https://archive.org/details/comptes-rendus-hebdomadaires-academie-des-sciences_1911-01-30_152_5
+summary: >
+  A three-page note proving Egorov's theorem: a sequence of measurable functions that converges
+  almost everywhere on an interval converges uniformly once a set of arbitrarily small measure is
+  removed. The proof uses Weyl's tail suprema of |f − fₙ| and a convergent series to bound the
+  measure of the removed set.
+existing_translations: []
+copyright:
+  status: public-domain
+  note: >
+    Author died 1931 and the note was published in 1911: public domain in Russia (life + 70
+    years) and in the US (published before 1930). Scan on the Internet Archive.
+translation:
+  status: complete
+  translators: [Claude (AI draft)]
+  reviewed_by: []
+lean:
+  module: SovietLean.Analysis.Egorov1911
+  results:
+    - label: Théorème (Egorov's theorem), with the complement of measure ≥ m(AB) − η
+      decl: SovietLean.Egorov1911.egorov
+    - label: Eq. (1) — convergence in measure, m(n, ε) → 0
+      decl: SovietLean.Egorov1911.measure_gt_tendsto_zero
+    - label: Lebesgue's proposition — μ(n, ε) = measure of Eₙ → 0
+      decl: SovietLean.Egorov1911.measure_tail_tendsto_zero
+    - label: Eq. (3) — R̄₁ ≥ R̄₂ ≥ … ≥ R̄ₙ ≥ …
+      decl: SovietLean.Egorov1911.Rbar_antitone
+    - label: Eq. (4) — |f − f_m| ≤ R̄ₙ for m ≥ n
+      decl: SovietLean.Egorov1911.le_Rbar
+    - label: R̄ₙ(x) → 0 at points of convergence
+      decl: SovietLean.Egorov1911.Rbar_tendsto_zero
+    - label: Footnote (4) — R̄ₙ is measurable
+      decl: SovietLean.Egorov1911.measurable_Rbar
+contributors: [Michal Shavit]
