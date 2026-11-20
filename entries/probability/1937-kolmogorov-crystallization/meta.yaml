@@ -18,9 +18,15 @@ existing_translations:
     Vol. II: Probability Theory and Mathematical Statistics (Kluwer, 1992); pages not verified.
 copyright:
   status: in-copyright
-  note: Author died 1987. No translation is hosted here; the entry carries notes and Lean only.
+  maintainer_override: true
+  note: >
+    Author died 1987; the original is on Math-Net.Ru, which reserves all rights. This English
+    translation is published without the rights holder's permission, for non-commercial
+    scholarly use, and will be removed on request of the rights holder.
 translation:
-  status: none
+  status: complete
+  translators: [Claude (AI draft)]
+  reviewed_by: []
 lean:
   module: SovietLean.Probability.Kolmogorov1937Crystallization
   results:
