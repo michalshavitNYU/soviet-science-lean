@@ -1,0 +1,34 @@
+id: 1941-kolmogorov-lognormal-grinding
+subject: probability
+title_original: О логарифмически нормальном законе распределения размеров частиц при дроблении
+title_en: On the logarithmically normal law of distribution of particle sizes under grinding
+authors: [A. N. Kolmogorov]
+year: 1941
+language: ru
+source: Doklady Akademii Nauk SSSR 31(2) (1941), 99–101.
+summary: >
+  Explains why crushed particles have log-normally distributed sizes: if each break shrinks
+  a particle by a random factor independent of its size, the logarithm of size is a sum of
+  independent terms, and the central limit theorem applies. The idea later reappears in
+  Kolmogorov's 1962 log-normal refinement of turbulence theory.
+copyright:
+  status: in-copyright
+  note: Author died 1987. No translation is hosted here; the entry carries notes and Lean only.
+translation:
+  status: none
+lean:
+  module: SovietLean.Probability.Kolmogorov1941LogNormal
+  results:
+    - label: Log of a product of breakage ratios is a sum
+      decl: SovietLean.Kolmogorov1941.log_size
+    - label: Mean of the log-size grows linearly in the number of breaks
+      decl: SovietLean.Kolmogorov1941.log_size_mean
+    - label: Variance of the log-size grows linearly in the number of breaks
+      decl: SovietLean.Kolmogorov1941.log_size_variance
+    - label: Log-normal limit law (lineage form)
+      decl: SovietLean.Kolmogorov1941.lognormal_limit
+contributors: [Michal Shavit]
+help_wanted: >
+  Formalize Kolmogorov's population statement: in the breakage process, the expected number
+  of particles of log-size below x, suitably normalized, tends to a normal distribution
+  function. Also: record the paper's own numbering in the labels.
