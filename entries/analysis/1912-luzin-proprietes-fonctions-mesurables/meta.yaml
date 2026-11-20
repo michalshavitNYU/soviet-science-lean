@@ -1,0 +1,52 @@
+id: 1912-luzin-proprietes-fonctions-mesurables
+subject: analysis
+title_original: Sur les propriétés des fonctions mesurables
+title_en: On the properties of measurable functions
+authors: [N. N. Luzin]
+year: 1912
+language: fr
+source: >
+  Comptes Rendus Hebdomadaires des Séances de l'Académie des Sciences (Paris) 154 (1912),
+  1688–1690 (séance du 17 juin 1912; presented by Émile Picard; author's name printed "N. Lusin").
+summary: >
+  A three-page note announcing Luzin's theorem: a measurable function on [0, 1] is continuous on a
+  perfect, nowhere dense set whose measure is as close to 1 as one likes, and conversely every
+  function with this "C-property" is measurable. As consequences, every measurable function is the
+  a.e. sum of an absolutely convergent series of polynomials, and every a.e. finite measurable
+  function is the a.e. derivative of a continuous function.
+existing_translations: []
+copyright:
+  status: public-domain
+  note: >
+    Luzin died on 28 February 1950. In Russia protection lasts for the author's life plus 70 years,
+    plus 4 years for authors who worked during the Great Patriotic War; even with the extension it
+    expired at the end of 2024. In France (where the note was published) the term is life plus 70
+    years, expired at the end of 2020 (the old war extensions do not lengthen it beyond that). The
+    note was published in 1912, so it is in the public domain in the United States. The scan is
+    linked, not included.
+translation:
+  status: complete
+  translators: [Claude (AI draft)]
+  reviewed_by: []
+lean:
+  module: SovietLean.Analysis.Luzin1912
+  results:
+    - label: General theorem — a measurable function on [0, 1] has the C-property
+      decl: SovietLean.Luzin1912.cProperty_of_aemeasurable
+    - label: Converse — a function with the C-property is measurable
+      decl: SovietLean.Luzin1912.aemeasurable_of_cProperty
+    - label: Measurable ⇔ C-property
+      decl: SovietLean.Luzin1912.aemeasurable_iff_cProperty
+    - label: An a.e. limit of functions with the C-property has the C-property
+      decl: SovietLean.Luzin1912.cProperty_of_tendsto
+    - label: Modern form — f agrees with a continuous function off a set of measure < ε
+      decl: SovietLean.Luzin1912.exists_continuous_eq_off
+    - label: Consequence — a series of polynomials converging absolutely to f a.e.
+      decl: SovietLean.Luzin1912.exists_polynomial_series
+contributors: [Michal Shavit]
+help_wanted: >
+  Formalize the note's Theorems I and II. Theorem I: no continuous function has derivative +∞ or
+  −∞ on a set of positive measure. Theorem II: every measurable function on [0, 1], finite almost
+  everywhere, is almost everywhere the ordinary derivative of a function continuous on [0, 1].
+  Both need careful statements (one-sided versus two-sided infinite derivatives; a function with
+  values in EReal for Theorem II) before any proof.
