@@ -1,0 +1,92 @@
+id: 1924-friedmann-negative-kruemmung
+subject: high-energy
+title_original: Über die Möglichkeit einer Welt mit konstanter negativer Krümmung des Raumes
+title_en: On the possibility of a world with constant negative curvature of space
+authors: [A. Friedmann]
+year: 1924
+language: de
+source: >
+  A. Friedmann, "Über die Möglichkeit einer Welt mit konstanter negativer Krümmung des Raumes",
+  Zeitschrift für Physik 21 (1924), 326–332 (received 7 January 1924; dated St. Petersburg,
+  November 1923). doi:10.1007/BF01328280.
+  Scan: https://archive.org/details/friedmann-alexander-uber-die-krummung-des-raumes
+summary: >
+  The negative-curvature companion of Friedmann's 1922 paper. With space of constant negative
+  curvature, written in the half-space form, Friedmann shows that every stationary solution of
+  Einstein's equations has zero or negative density, while non-stationary worlds with positive
+  density exist: the radius obeys the 1922 equation with the sign of the curvature term reversed,
+  and the density is again ρ = 3A/(κR³). He concludes that the field equations alone cannot
+  decide whether the world is finite.
+existing_translations:
+  - >
+    A. Friedmann, "On the possibility of a world with constant negative curvature of space",
+    General Relativity and Gravitation 31(12) (1999), 2001–2008, doi:10.1023/A:1026755309811
+    (bibliographic data checked against Crossref; text not consulted).
+copyright:
+  status: public-domain
+  note: >
+    Friedmann died on 16 September 1925, so his works left copyright in Russia and in Germany
+    (author's life + 70 years) at the end of 1995. The German text was published in Germany in
+    1924; works published before 1931 are in the public domain in the United States. If the
+    German text is the work of an unnamed translator, an anonymous work published in 1924 is also
+    free in Germany (70 years from publication). The Internet Archive scan is linked, not copied.
+translation:
+  status: complete
+  translators: [Claude (AI draft)]
+  reviewed_by: []
+lean:
+  module: SovietLean.HighEnergy.Friedmann1924
+  results:
+    - label: (6) — L = L₀/x₃ + n x₃ solves ∂L/∂x₃ + L/x₃ = 2n
+      decl: SovietLean.Friedmann1924.eq6_solution
+    - label: (6) — every solution on x₃ > 0 is L₀/x₃ + n x₃
+      decl: SovietLean.Friedmann1924.eq6_general
+    - label: (6) ⇒ (7) — for n = 1, L = L₀/x₃ + x₃
+      decl: SovietLean.Friedmann1924.eq7_of_eq6
+    - label: (6) ⇒ (8) — for n = 0, L = L₀/x₃
+      decl: SovietLean.Friedmann1924.eq8_of_eq6
+    - label: (9) is Eq. (4) of the 1922 note with c = 1
+      decl: SovietLean.Friedmann1924.eq9_iff_eq4
+    - label: §2.3 — along the (D″) equation, R R'² − c²R − (λ/3)R³ has derivative zero
+      decl: SovietLean.Friedmann1924.energy_hasDerivAt
+    - label: §2.3 — the first integral R'²/c² = (A + R + (λ/(3c²))R³)/R
+      decl: SovietLean.Friedmann1924.eqA_of_eqR
+    - label: §2.3 — the converse, where R' ≠ 0
+      decl: SovietLean.Friedmann1924.eqR_of_eqA
+    - label: (10) — ρ = 3A/(κR³)
+      decl: SovietLean.Friedmann1924.density_eq
+    - label: (10) — ρ > 0 iff A > 0
+      decl: SovietLean.Friedmann1924.density_pos_iff
+    - label: (D″₃) — a constant radius solves the (D″) equation iff λ = −c²/R²
+      decl: SovietLean.Friedmann1924.static_iff
+    - label: (D″₃) — ρ = −2/(κR²)
+      decl: SovietLean.Friedmann1924.static_density
+    - label: §2.2 — the static (D″) world has negative density
+      decl: SovietLean.Friedmann1924.static_density_neg
+    - label: λ ≥ 0, A ≥ 0 — A + x + (λ/(3c²))x³ > 0 for x > 0
+      decl: SovietLean.Friedmann1924.radicand_pos
+    - label: λ ≥ 0, A ≥ 0 — the world is monotonic
+      decl: SovietLean.Friedmann1924.monotonic_world
+    - label: λ < 0 — the radicand is negative for large x
+      decl: SovietLean.Friedmann1924.radicand_neg_of_large
+    - label: λ < 0, A > 0 — the radicand has a positive root
+      decl: SovietLean.Friedmann1924.exists_root_of_neg
+    - label: λ < 0 — the radius is bounded
+      decl: SovietLean.Friedmann1924.bounded_of_neg
+    - label: λ = 0 — the hyperbolic cycloid R(t) solves the first integral
+      decl: SovietLean.Friedmann1924.openWorld_eqA
+    - label: λ = 0 — R = (A/2)(cosh η − 1) at t = (A/(2c))(sinh η − η)
+      decl: SovietLean.Friedmann1924.openWorld_param
+    - label: λ = 0 — R = 0 at t = 0
+      decl: SovietLean.Friedmann1924.openWorld_zero
+    - label: λ = 0 — R is strictly increasing for t ≥ 0
+      decl: SovietLean.Friedmann1924.openWorld_strictMonoOn
+    - label: λ = 0 — R → ∞ as t → ∞
+      decl: SovietLean.Friedmann1924.openWorld_tendsto
+contributors: [Michal Shavit]
+help_wanted: >
+  Formalize the stationary analysis of §2, nos. 1–2: the integration of the second-order system
+  for M to (1) and (3), the relation λR² = 3 from (4) (printed λR³ = 3), and the vanishing of the
+  density for (D′₁) and (D′₂). For λ < 0, prove that solutions are periodic (as for the 1922
+  periodic world). The reduction of Einstein's equations to the equations for R needs Lorentzian
+  geometry, which Mathlib does not yet have.
