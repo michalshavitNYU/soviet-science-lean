@@ -1,0 +1,68 @@
+id: 1925-kolmogorov-tertium-non-datur
+subject: logic
+title_original: О принципе tertium non datur
+title_en: On the principle of tertium non datur
+authors: [A. N. Kolmogorov]
+year: 1925
+language: ru
+source: >
+  Matematicheskii Sbornik 32(4) (1925), 646–667 (received 30 September 1925). Math-Net.Ru
+  sm7425; Zbl 51.0048.01. French résumé "Sur le principe de tertium non datur" on p. 667.
+summary: >
+  Kolmogorov gives axioms for the logic of implication and negation that are valid for every
+  judgement (today: minimal logic) and shows that adding double negation gives Hilbert's
+  classical logic. He then puts a double negation in front of every subformula and proves that
+  every classical derivation becomes a derivation without the law of excluded middle. So
+  classical mathematics stays correct when each statement is read as its own double negation,
+  its "pseudotruth". This is the first double-negation translation, now called the Kolmogorov
+  translation.
+existing_translations:
+  - >
+    "On the principle of excluded middle", transl. J. van Heijenoort, in J. van Heijenoort (ed.),
+    From Frege to Gödel: A Source Book in Mathematical Logic, 1879–1931, Harvard University
+    Press, 1967, pp. 416–437 (as cited secondhand; not checked against the book).
+copyright:
+  status: in-copyright
+  note: >
+    Author died 1987; the original is on Math-Net.Ru, which reserves all rights. No translation
+    is hosted here; the entry carries notes and Lean only.
+translation:
+  status: none
+lean:
+  module: SovietLean.Logic.Kolmogorov1925
+  results:
+    - label: Ch. IV §§ 3–6 — main theorem, propositional part (Γ ⊢ A in ℌ ⇒ Γ* ⊢ A* in 𝔅)
+      decl: SovietLean.Kolmogorov1925.kolmogorov
+    - label: Converse of the main theorem (Γ* ⊢ A* in 𝔅 ⇒ Γ ⊢ A in ℌ); not in the paper
+      decl: SovietLean.Kolmogorov1925.kolmogorov_converse
+    - label: Every formula is equivalent to its translation A* in ℌ
+      decl: SovietLean.Kolmogorov1925.kol_equiv_H
+    - label: Ch. III § 3, ch. IV § 2 — every translated formula is of type A· (n(A*) → A* in 𝔅)
+      decl: SovietLean.Kolmogorov1925.stable_kol
+    - label: Ch. IV § 3, scheme (50) — from 𝔖* and (𝔖 → 𝔗)* infer 𝔗*
+      decl: SovietLean.Kolmogorov1925.Proves.mp_kol
+    - label: Formula (10) — (A → B) → (B̄ → Ā) in 𝔅
+      decl: SovietLean.Kolmogorov1925.f10
+    - label: Formula (12) — A → (Ā → B̄) in 𝔅
+      decl: SovietLean.Kolmogorov1925.f12
+    - label: Formula (24) — (A → B) → {(Ā → B) → B̄̄} in 𝔅
+      decl: SovietLean.Kolmogorov1925.f24
+    - label: Formula (34) — A → Ā̄ in 𝔅
+      decl: SovietLean.Kolmogorov1925.f34
+    - label: Formula (36), Brouwer — Ā̄̄ → Ā in 𝔅
+      decl: SovietLean.Kolmogorov1925.f36
+    - label: Formula (46) — n(A → B) → (A → nB) in 𝔅
+      decl: SovietLean.Kolmogorov1925.f46
+    - label: Formula (18) — Hilbert's axiom A → (Ā → B) in ℌ
+      decl: SovietLean.Kolmogorov1925.f18
+    - label: Formula (26) — Hilbert's axiom (A → B) → {(Ā → B) → B} in ℌ
+      decl: SovietLean.Kolmogorov1925.f26
+    - label: Double negation (axiom 6) is not provable in 𝔅; not in the paper
+      decl: SovietLean.Kolmogorov1925.not_B_dne
+    - label: Hilbert's axiom A → (Ā → B) is not provable in 𝔅; not in the paper (cf. ch. II § 4)
+      decl: SovietLean.Kolmogorov1925.not_B_efq
+contributors: [Michal Shavit]
+help_wanted: >
+  Formalize the quantifier part of chapter V: Kolmogorov's axioms I–IV (63) for (a) and (Ea),
+  his principle P, and the proofs of formulas (59)–(62), with (59) using double negation. A
+  first-order version of the main theorem (translating (a)A(a) to n(a)nA(a)) would follow.
