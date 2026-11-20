@@ -199,6 +199,9 @@ def page(title: str, body: str, depth: int = 0) -> str:
 <title>{html.escape(title if title.startswith(CONFIG["name"]) else title + " · " + CONFIG["name"])}</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="{up}assets/style.css">
+<meta property="og:title" content="{html.escape(title)}">
+<meta property="og:image" content="{CONFIG["site_url"]}/assets/banner-2000.jpg">
+<meta name="twitter:card" content="summary_large_image">
 </head><body>
 <header class="top"><a class="brand" href="{up}index.html">{html.escape(CONFIG["name"])}</a>
 <nav><a href="{up}index.html">Catalogue</a><a href="{up}contribute.html">Contribute</a>
@@ -274,7 +277,10 @@ def build_site() -> None:
                     f'entries yet. <a href="contribute.html">Contribute the first one.</a></div>'
                     for s in SUBJECTS if not counts[s["id"]])
     blurbs = "".join(f'<li><b>{html.escape(s["name"])}</b> — {html.escape(s["blurb"])}</li>' for s in SUBJECTS)
-    index = f"""<section class="hero"><h1>{html.escape(CONFIG['name'])}</h1>
+    index = f"""<section class="hero"><h1 class="banner"><img src="assets/banner-1000.jpg"
+ srcset="assets/banner-1000.jpg 1000w, assets/banner-2000.jpg 2000w"
+ sizes="(max-width: 960px) 100vw, 928px" width="2000" height="667"
+ alt="{html.escape(CONFIG['name'])}"></h1>
 <p class="subtitle">{html.escape(CONFIG['title'])}</p>
 <p>{html.escape(CONFIG['tagline'])}</p><ul class="subjects">{blurbs}</ul></section>
 <div class="filters"><div class="tabs">{tabs}</div>
