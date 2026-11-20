@@ -8,7 +8,7 @@ language: de
 source: Mathematische Annalen 99 (1928), 309–319.
 summary: >
   Introduces Kolmogorov's maximal inequality and uses it for convergence of random
-  series. The inequality is stated in Lean; the proof is open for contributors.
+  series. The inequality is proved in Lean, via Doob's maximal inequality.
 copyright:
   status: in-copyright
   note: Author died 1987. No translation is hosted here.
@@ -20,4 +20,6 @@ lean:
     - label: Maximal inequality
       decl: SovietScience.Kolmogorov1928.maximal_inequality
 contributors: [Michal Shavit]
-help_wanted: Prove `maximal_inequality` (hint in the Lean file docstring).
+help_wanted: >
+  Find where the inequality is stated in the paper (section and page) and use that as the
+  label. Formalize the paper's other results, e.g. the convergence criterion for random series.
