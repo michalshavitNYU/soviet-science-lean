@@ -1,0 +1,43 @@
+id: 1969-obukhov-integral-invariants
+subject: turbulence
+title_original: Об интегральных инвариантах в системах гидродинамического типа
+title_en: On integral invariants in systems of hydrodynamic type
+authors: [A. M. Obukhov]
+year: 1969
+language: ru
+source: Doklady Akademii Nauk SSSR 184(2) (1969), 309–312.
+summary: >
+  Defines systems of hydrodynamic type, quadratic ODEs that conserve phase volume and
+  energy, as finite-dimensional models of ideal fluid flow, and asks which of them have
+  extra quadratic integrals and hence non-trivial Gaussian invariant measures, the question
+  that matters for statistical turbulence theory.
+copyright:
+  status: in-copyright
+  note: >
+    Author died 1989. Math-Net.Ru gives free access but reserves all rights. An English
+    translation by Michal Shavit exists; permission to publish it has been requested.
+translation:
+  status: none
+lean:
+  module: SovietScience.Turbulence.Obukhov1969IntegralInvariants
+  results:
+    - label: Eq. (11) ⇒ (9) — the cyclic condition gives energy conservation (identity)
+      decl: SovietScience.Obukhov1969.energy_identity
+    - label: Eq. (9) — energy is constant along solutions
+      decl: SovietScience.Obukhov1969.energy_conserved
+    - label: Eq. (6) ⇔ (7) — volume preservation iff V_j = 0
+      decl: SovietScience.Obukhov1969.divergence_free_iff
+    - label: The Boltzmann distribution is stationary
+      decl: SovietScience.Obukhov1969.boltzmann_stationary
+    - label: n = 3 canonical form is a system of hydrodynamic type iff p + q + r = 0
+      decl: SovietScience.Obukhov1969.canonical_cyclic
+    - label: n = 3 — energy and the second integral I are conserved
+      decl: SovietScience.Obukhov1969.rigid_body_integrals
+    - label: N = n(n+2)(n−2)/3 independent components
+      decl: SovietScience.Obukhov1969.finrank_shtSpace
+contributors: [Michal Shavit]
+help_wanted: >
+  Prove `finrank_shtSpace`, Obukhov's count of independent components (checked numerically
+  for n ≤ 6). Also open: the paper's claim that every n = 3 system can be rotated into
+  canonical form (Dikii's argument via the matrix A), and the closing result on the
+  Friedmann–Keller chain with Millionshchikov's closure.

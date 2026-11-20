@@ -5,3 +5,4 @@ module
 public import SovietScience.Analysis.Gelfand1941NormedRings
 public import SovietScience.Probability.Kolmogorov1933ZeroOne
 public import SovietScience.Probability.Kolmogorov1928MaximalInequality
+public import SovietScience.Turbulence.Obukhov1969IntegralInvariants
