@@ -8,6 +8,9 @@
 - id: analysis
   name: Analysis
   blurb: Functional analysis, PDE, approximation theory, harmonic analysis.
+- id: logic
+  name: Logic & foundations
+  blurb: Intuitionistic and classical logic, foundations of mathematics, computability.
 - id: high-energy
-  name: High-energy physics
-  blurb: Quantum field theory, renormalization, particle and nuclear theory.
+  name: High-energy physics & gravitation
+  blurb: Quantum field theory, renormalization, particle theory, general relativity and cosmology.

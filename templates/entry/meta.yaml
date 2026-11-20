@@ -1,6 +1,6 @@
 # Copy this folder to entries/<subject>/<id>/ and fill in every field.
 id: 1941-kolmogorov-local-structure   # <year>-<author>-<short-title>; must equal the folder name
-subject: turbulence                   # turbulence | probability | analysis | high-energy  (see subjects.yaml)
+subject: turbulence                   # turbulence | probability | analysis | logic | high-energy  (see subjects.yaml)
 title_original: Локальная структура турбулентности ...   # title in the original language
 title_en: The local structure of turbulence ...
 authors: [A. N. Kolmogorov]

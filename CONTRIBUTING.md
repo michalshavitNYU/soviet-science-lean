@@ -11,7 +11,8 @@ pull request on GitHub; checks run automatically, and a maintainer reviews it be
 | `entries/turbulence/` | Turbulence: Kolmogorov–Obukhov theory, stability, wave turbulence |
 | `entries/probability/` | Probability: foundations, limit theorems, processes, ergodic theory |
 | `entries/analysis/` | Analysis: functional analysis, PDE, approximation and harmonic analysis |
-| `entries/high-energy/` | High-energy physics: QFT, renormalization, particle and nuclear theory |
+| `entries/logic/` | Logic & foundations: intuitionistic and classical logic, foundations, computability |
+| `entries/high-energy/` | High-energy physics & gravitation: QFT, renormalization, particle theory, general relativity, cosmology |
 
 To propose a new subject, open an issue.
 

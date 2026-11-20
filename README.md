@@ -1,8 +1,8 @@
 # SovietLean — Soviet Science, Verified
 
 An open dataset of Soviet mathematics and physics: **English translations** paired with
-**Lean 4 formalizations** of the main results, starting with four subjects: turbulence,
-probability, analysis and high-energy physics.
+**Lean 4 formalizations** of the main results, in five subjects: turbulence,
+probability, analysis, logic & foundations, and high-energy physics & gravitation.
 
 - **Website:** https://michalshavitnyu.github.io/soviet-science-lean
 - **Dataset:** [`dataset.jsonl`](https://michalshavitnyu.github.io/soviet-science-lean/dataset.jsonl),
