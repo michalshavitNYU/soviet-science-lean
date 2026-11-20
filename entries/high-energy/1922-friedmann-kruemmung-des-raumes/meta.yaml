@@ -1,0 +1,89 @@
+id: 1922-friedmann-kruemmung-des-raumes
+subject: high-energy
+title_original: Über die Krümmung des Raumes
+title_en: On the curvature of space
+authors: [A. Friedmann]
+year: 1922
+language: de
+source: >
+  A. Friedman, "Über die Krümmung des Raumes", Zeitschrift für Physik 10 (1922), 377–386
+  (received 29 June 1922; dated Petrograd, 29 May 1922). doi:10.1007/BF01332580.
+  Scan: https://archive.org/details/friedmann-alexander-uber-die-krummung-des-raumes
+summary: >
+  The first solutions of Einstein's field equations describing a world whose space has constant
+  positive curvature varying in time. Friedmann reduces the equations to an ODE for the world
+  radius R(t), shows that the only static worlds are Einstein's and de Sitter's, and classifies
+  the non-static ones by the cosmological constant λ: monotonically expanding worlds, and
+  periodic worlds whose radius grows from zero and falls back to zero.
+existing_translations:
+  - >
+    A. Friedman, "On the curvature of space", General Relativity and Gravitation 31(12) (1999),
+    1991–2000, doi:10.1023/A:1026751225741 (bibliographic data checked against Crossref; text not
+    consulted).
+copyright:
+  status: public-domain
+  note: >
+    Friedmann died on 16 September 1925, so his works left copyright in Russia and in Germany
+    (author's life + 70 years) at the end of 1995. The German version was published in Germany in
+    1922; works published before 1931 are in the public domain in the United States. The German
+    translator of Friedmann's Russian manuscript is not named in the journal; an anonymous work
+    published in 1922 would also be free in Germany (70 years from publication). The Internet
+    Archive scan is linked, not copied.
+translation:
+  status: complete
+  translators: [Claude (AI draft)]
+  reviewed_by: []
+lean:
+  module: SovietLean.HighEnergy.Friedmann1922
+  results:
+    - label: (4) ⇒ (6) — along (4), R R'² + c²R − (λ/3)R³ has derivative zero
+      decl: SovietLean.Friedmann1922.energy_hasDerivAt
+    - label: (4) ⇒ (6) — the first integral, with A = (R R'² + c²R − (λ/3)R³)/c²
+      decl: SovietLean.Friedmann1922.eq6_of_eq4
+    - label: (6) ⇒ (4) where R' ≠ 0
+      decl: SovietLean.Friedmann1922.eq4_of_eq6
+    - label: (5), (6) ⇒ (8) — ρ = 3A/(κR³)
+      decl: SovietLean.Friedmann1922.density_eq
+    - label: §1.4 — the volume of space is 2π²R³
+      decl: SovietLean.Friedmann1922.volume_of_space
+    - label: (8) ⇒ (9) — A = κM̄/(6π²)
+      decl: SovietLean.Friedmann1922.A_eq_mass
+    - label: §2.2 — A > 0 iff M̄ > 0
+      decl: SovietLean.Friedmann1922.A_pos_iff
+    - label: §2.1 — a constant radius solves (4) iff λ = c²/R²
+      decl: SovietLean.Friedmann1922.static_eq4_iff
+    - label: §2.1 — Einstein's density ρ = 2/(κR²)
+      decl: SovietLean.Friedmann1922.static_density
+    - label: §2.1 — Einstein's total mass M̄ = 4π²R/κ
+      decl: SovietLean.Friedmann1922.static_mass
+    - label: (10) — the maximum 4/(27A²) of the family y x³ − x + A = 0
+      decl: SovietLean.Friedmann1922.cubic_max
+    - label: (10) — the maximum is attained only at x = 3A/2
+      decl: SovietLean.Friedmann1922.cubic_max_eq_iff
+    - label: §2.4 — for λ > 4c²/(9A²), A − x + (λ/(3c²))x³ has no positive root
+      decl: SovietLean.Friedmann1922.radicand_pos
+    - label: §2.3 — at λ = λ₁ = 4c²/(9A²), x = 3A/2 is a root
+      decl: SovietLean.Friedmann1922.radicand_critical
+    - label: §2.3 — for λ < 0 there is a root x₀ in (0, A)
+      decl: SovietLean.Friedmann1922.exists_root_of_neg
+    - label: §2.4 — for λ > λ₁ the world is monotonic
+      decl: SovietLean.Friedmann1922.monotonic_world
+    - label: §2.6, λ = 0 — the cycloid R(t) solves (6)
+      decl: SovietLean.Friedmann1922.periodicWorld_eq6
+    - label: §2.6, λ = 0 — R = 0 at t = 0
+      decl: SovietLean.Friedmann1922.periodicWorld_zero
+    - label: (15) — R returns to 0 at t = πA/c
+      decl: SovietLean.Friedmann1922.periodicWorld_period
+    - label: §2.6, λ = 0 — R reaches its maximum A at t = πA/(2c)
+      decl: SovietLean.Friedmann1922.periodicWorld_half
+    - label: (15) — R is periodic with period t_π = πA/c
+      decl: SovietLean.Friedmann1922.periodicWorld_periodic
+    - label: §2.6, λ = 0 — 0 ≤ R ≤ A = x₀
+      decl: SovietLean.Friedmann1922.periodicWorld_le
+contributors: [Michal Shavit]
+help_wanted: >
+  Formalize the integral formulas: (14) for λ = 0, t_π = (2/c)∫₀^A √(x/(A − x)) dx = πA/c (an
+  improper integral); the monotonicity of the roots Θ(λ, A), ϑ(λ, A) in §2.3; the properties of
+  the time since creation (12) in §2.4, including its divergence as λ → λ₁ when A ≤ 2R₀/3; and
+  the periodicity of R for every λ < 0 (§2.6). The reduction of Einstein's equations to (4), (5)
+  needs Lorentzian geometry, which Mathlib does not yet have.
