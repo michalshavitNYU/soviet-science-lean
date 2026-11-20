@@ -53,7 +53,7 @@ All statements are in Obukhov's "Cartesian" coordinates $g_{ik} = \delta_{ik}$.
 | Boltzmann distribution is stationary | `boltzmann_stationary` | proved |
 | canonical $n=3$ form is admissible iff $p+q+r=0$ | `canonical_cyclic` | proved |
 | $E$ and $I$ conserved for $n = 3$ | `rigid_body_integrals` | proved |
-| $N = n(n+2)(n-2)/3$ | `finrank_shtSpace` | statement (help wanted) |
+| $N = n(n+2)(n-2)/3$ for $n \ge 2$ | `finrank_shtSpace` | proved |
 | Millionshchikov closure ⇒ exact Gaussian, second integral | — | not yet stated |
 
 ## Notes on the source
@@ -61,8 +61,19 @@ All statements are in Obukhov's "Cartesian" coordinates $g_{ik} = \delta_{ik}$.
 - **Factor of 2.** With a symmetric $\Gamma$, $\dot u^1 = 2\Gamma_{1,23}u^2u^3$, so the canonical
   equations $\dot u_1 = p u_2 u_3$ correspond to $\Gamma_{1,23} = p/2$, not $p$. This is a
   normalization and does not affect $p + q + r = 0$.
-- **$n = 1$.** The formula for $N$ gives $-1$, but the space is $\{0\}$. A linear-algebra check
-  confirms the formula for $2 \le n \le 6$.
+- **$n = 1$.** The formula for $N$ gives $-1$, but the space is $\{0\}$; the count holds for
+  $n \ge 2$.
+
+## How the count is proved
+
+Tensors $\Gamma_{i,jk}$ symmetric in $j,k$ form a space of dimension $n\binom{n+1}{2}$. The cyclic
+sum $\Gamma_{i,jk}+\Gamma_{j,ki}+\Gamma_{k,ij}$ of such a tensor is *totally* symmetric, and every
+totally symmetric $T$ arises (from $\Gamma = T/3$). So the cyclic sum maps onto a space of
+dimension $\binom{n+2}{3}$, the number of multisets of size 3. The trace $V_j$ then maps onto
+$\mathbb R^n$: for each $j$, pick $l \ne j$ (this is where $n \ge 2$ is needed) and take
+$\Gamma_{l,jl}=\Gamma_{l,lj}=1$, $\Gamma_{j,ll}=-2$, which has zero cyclic sum and trace $e_j$.
+Rank–nullity gives
+$$N = n\binom{n+1}{2} - \binom{n+2}{3} - n = \frac{n(n+2)(n-2)}{3}.$$
 - **The second integral needs nothing.** $I$ is conserved for *any* $p, q, r$:
   $(q-r)p + (r-p)q + (p-q)r = 0$ identically. The condition $p + q + r = 0$ is needed only for
   the energy.

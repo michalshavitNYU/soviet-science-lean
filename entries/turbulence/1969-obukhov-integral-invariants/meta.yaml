@@ -37,7 +37,6 @@ lean:
       decl: SovietScience.Obukhov1969.finrank_shtSpace
 contributors: [Michal Shavit]
 help_wanted: >
-  Prove `finrank_shtSpace`, Obukhov's count of independent components (checked numerically
-  for n ≤ 6). Also open: the paper's claim that every n = 3 system can be rotated into
-  canonical form (Dikii's argument via the matrix A), and the closing result on the
-  Friedmann–Keller chain with Millionshchikov's closure.
+  State and prove the paper's claim that every n = 3 system can be rotated into canonical
+  form (Dikii's argument via the matrix A), and its closing result on the Friedmann–Keller
+  chain with Millionshchikov's closure.

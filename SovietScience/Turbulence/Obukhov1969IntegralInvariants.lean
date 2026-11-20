@@ -5,6 +5,9 @@ public import Mathlib.Analysis.Calculus.Deriv.Prod
 public import Mathlib.Analysis.Calculus.Deriv.Mul
 public import Mathlib.Analysis.Calculus.MeanValue
 public import Mathlib.LinearAlgebra.Dimension.Finrank
+public import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+public import Mathlib.Data.Sym.Card
+public import Mathlib.Data.List.Permutation
 
 /-!
 # Obukhov (1969), *On integral invariants in systems of hydrodynamic type*
@@ -32,7 +35,7 @@ The vector field is `field Γ u i = ∑ j k, Γ i j k * u j * u k`.
 | Boltzmann distribution is stationary | `boltzmann_stationary` | proved |
 | canonical `n = 3` system is an S.H.T. | `canonical_cyclic`, `canonical_trace_free` | proved |
 | canonical `n = 3` system has a second integral `I` | `rigid_body_integrals` | proved |
-| `N = n(n+2)(n-2)/3` independent components | `finrank_shtSpace` | statement |
+| `N = n(n+2)(n-2)/3` independent components | `finrank_shtSpace` | proved |
 
 Two remarks on matching the source.
 
@@ -254,10 +257,262 @@ def shtSpace (n : ℕ) : Submodule ℝ (Fin n → Fin n → Fin n → ℝ) where
     · simp only [traceVec, Pi.smul_apply, smul_eq_mul, ← Finset.mul_sum]
       rw [show ∑ l, a l j l = 0 from ha₃ j, mul_zero]
 
+/-! ### Proof of the count -/
+
+section Count
+
+open Module
+
+/-- Tensors symmetric in the last two indices. -/
+def symSpace (n : ℕ) : Submodule ℝ (Fin n → Fin n → Fin n → ℝ) where
+  carrier := {Γ | IsSymm Γ}
+  add_mem' {a b} ha hb i j k := by simp [ha i j k, hb i j k]
+  zero_mem' _ _ _ := rfl
+  smul_mem' c a ha i j k := by simp [ha i j k]
+
+/-- Totally symmetric tensors. -/
+def IsTotSymm {n : ℕ} (T : Fin n → Fin n → Fin n → ℝ) : Prop :=
+  ∀ i j k, T i j k = T j i k ∧ T i j k = T i k j
+
+def totSymSpace (n : ℕ) : Submodule ℝ (Fin n → Fin n → Fin n → ℝ) where
+  carrier := {T | IsTotSymm T}
+  add_mem' {a b} ha hb i j k := by
+    refine ⟨?_, ?_⟩ <;> simp only [Pi.add_apply]
+    · rw [(ha i j k).1, (hb i j k).1]
+    · rw [(ha i j k).2, (hb i j k).2]
+  zero_mem' _ _ _ := ⟨rfl, rfl⟩
+  smul_mem' c a ha i j k := by
+    refine ⟨?_, ?_⟩ <;> simp only [Pi.smul_apply, smul_eq_mul]
+    · rw [(ha i j k).1]
+    · rw [(ha i j k).2]
+
+/-! ### Dimension of `symSpace` -/
+
+/-- `symSpace n ≃ (Fin n × Sym2 (Fin n) → ℝ)`. -/
+noncomputable def symEquiv (n : ℕ) : symSpace n ≃ₗ[ℝ] (Fin n × Sym2 (Fin n) → ℝ) where
+  toFun Γ p := Sym2.lift ⟨fun j k ↦ Γ.1 p.1 j k, fun j k ↦ Γ.2 p.1 j k⟩ p.2
+  invFun f := ⟨fun i j k ↦ f (i, s(j, k)), fun i j k ↦ by simp only [Sym2.eq_swap]⟩
+  map_add' Γ Δ := by
+    funext ⟨i, s⟩; induction s using Sym2.ind; simp
+  map_smul' c Γ := by
+    funext ⟨i, s⟩; induction s using Sym2.ind; simp
+  left_inv Γ := by ext i j k; simp
+  right_inv f := by funext ⟨i, s⟩; induction s using Sym2.ind; simp
+
+theorem finrank_symSpace (n : ℕ) : finrank ℝ (symSpace n) = n * (n + 1).choose 2 := by
+  rw [(symEquiv n).finrank_eq, Module.finrank_fintype_fun_eq_card, Fintype.card_prod,
+    Fintype.card_fin, Sym2.card, Fintype.card_fin]
+
+/-! ### Dimension of `totSymSpace` -/
+
+theorem tot_symm_all {n : ℕ} {T : Fin n → Fin n → Fin n → ℝ} (hT : IsTotSymm T) (a b c : Fin n) :
+    T a b c = T b a c ∧ T a b c = T a c b ∧ T a b c = T b c a ∧ T a b c = T c a b ∧
+    T a b c = T c b a := by
+  have h1 := hT a b c; have h2 := hT b a c; have h3 := hT a c b; have h4 := hT b c a
+  have h5 := hT c a b
+  refine ⟨h1.1, h1.2, ?_, ?_, ?_⟩
+  · rw [h1.1, h2.2]
+  · rw [h1.2, h3.1]
+  · rw [h1.1, h2.2, h4.1]
+
+theorem perm3 {n : ℕ} {T : Fin n → Fin n → Fin n → ℝ} (hT : IsTotSymm T) {a b c a' b' c' : Fin n}
+    (h : List.Perm [a, b, c] [a', b', c']) : T a b c = T a' b' c' := by
+  obtain ⟨s1, s2, s3, s4, s5⟩ := tot_symm_all hT a b c
+  have ha' : a' ∈ [a, b, c] := h.symm.subset (by simp)
+  simp only [List.mem_cons, List.not_mem_nil, or_false] at ha'
+  rcases ha' with rfl | rfl | rfl
+  · have h2 : List.Perm [b, c] [b', c'] := (List.perm_cons _).1 h
+    rcases List.pair_perm.1 h2 with h3 | h3 <;> simp only [List.cons.injEq, and_true] at h3 <;>
+      obtain ⟨rfl, rfl⟩ := h3
+    · rfl
+    · exact s2
+  · have h1 : List.Perm [a', a, c] [a', b', c'] := (List.Perm.swap a a' [c]).trans h
+    have h2 : List.Perm [a, c] [b', c'] := (List.perm_cons _).1 h1
+    rcases List.pair_perm.1 h2 with h3 | h3 <;> simp only [List.cons.injEq, and_true] at h3 <;>
+      obtain ⟨rfl, rfl⟩ := h3
+    · exact s1
+    · exact s3
+  · have h1 : List.Perm [a', a, b] [a', b', c'] :=
+      (List.perm_middle (l₁ := [a, b]) (l₂ := []) (a := a')).symm.trans h
+    have h2 : List.Perm [a, b] [b', c'] := (List.perm_cons _).1 h1
+    rcases List.pair_perm.1 h2 with h3 | h3 <;> simp only [List.cons.injEq, and_true] at h3 <;>
+      obtain ⟨rfl, rfl⟩ := h3
+    · exact s4
+    · exact s5
+
+/-- Evaluate a function on 3-element lists, zero elsewhere. -/
+def on3 {α : Type*} (T : α → α → α → ℝ) : List α → ℝ
+  | [a, b, c] => T a b c
+  | _ => 0
+
+theorem on3_perm {n : ℕ} {T : Fin n → Fin n → Fin n → ℝ} (hT : IsTotSymm T) :
+    ∀ l l' : List (Fin n), List.Perm l l' → on3 T l = on3 T l' := by
+  intro l l' h
+  have hl := h.length_eq
+  match l, l', h, hl with
+  | [a, b, c], [a', b', c'], h, _ => exact perm3 hT h
+  | [], [], _, _ => rfl
+  | [_], [_], _, _ => rfl
+  | [_, _], [_, _], _, _ => rfl
+  | _ :: _ :: _ :: _ :: _, _ :: _ :: _ :: _ :: _, _, _ => rfl
+
+/-- `Sym (Fin n) 3 → ℝ` maps onto totally symmetric tensors. -/
+noncomputable def symFunToTot (n : ℕ) : (Sym (Fin n) 3 → ℝ) →ₗ[ℝ] totSymSpace n where
+  toFun f := ⟨fun i j k ↦ f (i ::ₛ j ::ₛ k ::ₛ Sym.nil), fun i _ _ ↦
+    ⟨congrArg f (Sym.cons_swap _ _ _), congrArg f (congrArg (i ::ₛ ·) (Sym.cons_swap _ _ _))⟩⟩
+  map_add' _ _ := rfl
+  map_smul' _ _ := rfl
+
+theorem sym3_eq {n : ℕ} (s : Sym (Fin n) 3) : ∃ a b c : Fin n, s = a ::ₛ b ::ₛ c ::ₛ Sym.nil := by
+  obtain ⟨m, hm⟩ := s
+  induction m using Quot.ind with
+  | mk l =>
+    match l, hm with
+    | [a, b, c], _ => exact ⟨a, b, c, rfl⟩
+
+theorem symFunToTot_bijective (n : ℕ) : Function.Bijective (symFunToTot n) := by
+  constructor
+  · intro f g hfg
+    funext s
+    obtain ⟨a, b, c, rfl⟩ := sym3_eq s
+    have := congrArg (fun T : totSymSpace n ↦ T.1 a b c) hfg
+    exact this
+  · intro T
+    refine ⟨fun s ↦ Quot.liftOn s.1 (on3 T.1) (on3_perm T.2), ?_⟩
+    ext i j k
+    rfl
+
+theorem finrank_totSymSpace (n : ℕ) : finrank ℝ (totSymSpace n) = (n + 2).choose 3 := by
+  rw [← (LinearEquiv.ofBijective _ (symFunToTot_bijective n)).finrank_eq,
+    Module.finrank_fintype_fun_eq_card, Sym.card_sym_eq_choose, Fintype.card_fin]
+  rfl
+
+/-! ### The map `Γ ↦ (cyclic sum, trace)` -/
+
+/-- The cyclic sum `Γ_{i,jk} + Γ_{j,ki} + Γ_{k,ij}` of a tensor symmetric in `j, k` is totally
+symmetric. -/
+noncomputable def cycMap (n : ℕ) : symSpace n →ₗ[ℝ] totSymSpace n where
+  toFun Γ := ⟨fun i j k ↦ Γ.1 i j k + Γ.1 j k i + Γ.1 k i j, fun i j k ↦ by
+    have h : IsSymm Γ.1 := Γ.2
+    refine ⟨?_, ?_⟩
+    · beta_reduce; rw [h j i k, h i k j, h k j i]; ring
+    · beta_reduce; rw [h i k j, h k j i, h j i k]; ring⟩
+  map_add' Γ Δ := by ext i j k; simp; ring
+  map_smul' c Γ := by ext i j k; simp; ring
+
+noncomputable def trMap (n : ℕ) : symSpace n →ₗ[ℝ] (Fin n → ℝ) where
+  toFun Γ := traceVec Γ.1
+  map_add' Γ Δ := by funext j; simp [traceVec, Finset.sum_add_distrib]
+  map_smul' c Γ := by funext j; simp [traceVec, Finset.mul_sum]
+
+noncomputable def Φ (n : ℕ) : symSpace n →ₗ[ℝ] totSymSpace n × (Fin n → ℝ) :=
+  (cycMap n).prod (trMap n)
+
+/-- A tensor with zero cyclic sum and trace `e_j`: supported on the index pair `{j, l}`. -/
+noncomputable def E {n : ℕ} (j l : Fin n) : Fin n → Fin n → Fin n → ℝ := fun i a b ↦
+  if i = l ∧ a = j ∧ b = l then 1
+  else if i = l ∧ a = l ∧ b = j then 1
+  else if i = j ∧ a = l ∧ b = l then -2 else 0
+
+theorem E_symm {n : ℕ} {j l : Fin n} (hl : l ≠ j) : IsSymm (E j l) := by
+  intro i a b; simp only [E]; split_ifs <;> simp_all
+
+theorem E_cyc {n : ℕ} {j l : Fin n} (hl : l ≠ j) (i a b : Fin n) :
+    E j l i a b + E j l a b i + E j l b i a = 0 := by
+  simp only [E]; split_ifs <;> simp_all <;> norm_num
+
+theorem E_trace {n : ℕ} {j l : Fin n} (hl : l ≠ j) : traceVec (E j l) = Pi.single j 1 := by
+  funext m
+  simp only [traceVec, E, Pi.single_apply]
+  rw [Finset.sum_eq_single l]
+  · by_cases hm : m = j
+    · simp [hm]
+    · simp [hm, hl]
+  · intro x _ hx; simp [hx]
+  · simp
+
+theorem Φ_surjective (n : ℕ) (hn : 2 ≤ n) : Function.Surjective (Φ n) := by
+  -- for each `j`, some `l ≠ j`
+  have hl : ∀ j : Fin n, ∃ l : Fin n, l ≠ j := by
+    intro j
+    by_cases hj : j.val = 0
+    · exact ⟨⟨1, by omega⟩, fun h ↦ by simp [Fin.ext_iff] at h; omega⟩
+    · exact ⟨⟨0, by omega⟩, fun h ↦ by simp [Fin.ext_iff] at h; omega⟩
+  choose l hl using hl
+  let Ej : Fin n → symSpace n := fun j ↦ ⟨E j (l j), E_symm (hl j)⟩
+  have hEj : ∀ j, Φ n (Ej j) = (0, Pi.single j 1) := by
+    intro j
+    refine Prod.ext ?_ ?_
+    · ext i a b; exact E_cyc (hl j) i a b
+    · exact E_trace (hl j)
+  -- the section `T ↦ T/3`
+  let s3 : totSymSpace n → symSpace n := fun T ↦ ⟨fun i j k ↦ T.1 i j k / 3,
+    fun i j k ↦ by beta_reduce; rw [(T.2 i j k).2]⟩
+  have hs3 : ∀ T, (Φ n (s3 T)).1 = T := by
+    intro T; ext i j k
+    change T.1 i j k / 3 + T.1 j k i / 3 + T.1 k i j / 3 = T.1 i j k
+    obtain ⟨_, _, h3, h4, _⟩ := tot_symm_all T.2 i j k
+    rw [← h3, ← h4]; ring
+  rintro ⟨T, v⟩
+  let w : Fin n → ℝ := v - (Φ n (s3 T)).2
+  refine ⟨s3 T + ∑ j, w j • Ej j, ?_⟩
+  rw [map_add, map_sum]
+  simp only [map_smul, hEj]
+  refine Prod.ext ?_ ?_
+  · simp [hs3, Prod.fst_sum]
+  · simp only [Prod.snd_add, Prod.snd_sum, Prod.smul_snd]
+    have : ∑ j, w j • (Pi.single j (1 : ℝ) : Fin n → ℝ) = w := by
+      funext m; simp [Finset.sum_apply, Pi.single_apply]
+    rw [this]; simp [w]
+
+/-! ### Putting it together -/
+
+theorem map_ker_Φ (n : ℕ) : (LinearMap.ker (Φ n)).map (symSpace n).subtype = shtSpace n := by
+  ext Γ
+  simp only [Submodule.mem_map, LinearMap.mem_ker, Submodule.coe_subtype]
+  constructor
+  · rintro ⟨x, hx, rfl⟩
+    have h1 := congrArg Prod.fst hx
+    have h2 := congrArg Prod.snd hx
+    refine ⟨x.2, fun i j k ↦ ?_, fun j ↦ ?_⟩
+    · exact congrArg (fun T : totSymSpace n ↦ T.1 i j k) h1
+    · exact congrFun h2 j
+  · rintro ⟨hs, hc, ht⟩
+    refine ⟨⟨Γ, hs⟩, Prod.ext ?_ ?_, rfl⟩
+    · ext i j k; exact hc i j k
+    · funext j; exact ht j
+
 /-- **Obukhov's count**: for `n ≥ 2` the dynamical tensor has `N = n(n+2)(n-2)/3`
-independent components. (Checked numerically for `n ≤ 6`; proof open.) -/
+independent components.
+
+Proof: tensors symmetric in `j, k` form a space of dimension `n·C(n+1, 2)`. The map
+`Γ ↦ (cyclic sum, trace)` sends it onto (totally symmetric tensors) × `ℝⁿ`, of dimension
+`C(n+2, 3) + n` (onto needs `n ≥ 2`), and its kernel is `shtSpace n`. Rank–nullity gives
+`N = n·C(n+1,2) - C(n+2,3) - n = n(n+2)(n-2)/3`. -/
 theorem finrank_shtSpace (n : ℕ) (hn : 2 ≤ n) :
-    3 * (Module.finrank ℝ (shtSpace n) : ℤ) = n * (n + 2) * (n - 2) := by
-  sorry
+    3 * (finrank ℝ (shtSpace n) : ℤ) = n * (n + 2) * (n - 2) := by
+  have hrn := LinearMap.finrank_range_add_finrank_ker (Φ n)
+  rw [LinearMap.range_eq_top.2 (Φ_surjective n hn), finrank_top, Module.finrank_prod,
+    finrank_totSymSpace, Module.finrank_fin_fun, finrank_symSpace,
+    (Submodule.equivMapOfInjective _ (symSpace n).injective_subtype _).finrank_eq,
+    map_ker_Φ] at hrn
+  have c2 : 2 * (n + 1).choose 2 = (n + 1) * n := by
+    have h := Nat.descFactorial_eq_factorial_mul_choose (n + 1) 2
+    simp [Nat.descFactorial, Nat.factorial] at h
+    linarith
+  have c3 : 6 * (n + 2).choose 3 = (n + 2) * (n + 1) * n := by
+    have h := Nat.descFactorial_eq_factorial_mul_choose (n + 2) 3
+    simp [Nat.descFactorial, Nat.factorial] at h
+    linarith
+  have hq : (3 * (finrank ℝ (shtSpace n) : ℚ)) = n * (n + 2) * (n - 2) := by
+    have e1 : (2 * (n + 1).choose 2 : ℚ) = (n + 1) * n := by exact_mod_cast c2
+    have e2 : (6 * (n + 2).choose 3 : ℚ) = (n + 2) * (n + 1) * n := by exact_mod_cast c3
+    have e3 : ((n * (n + 1).choose 2 : ℕ) : ℚ) =
+        (((n + 2).choose 3 + n + finrank ℝ (shtSpace n) : ℕ) : ℚ) := by rw [hrn]
+    push_cast at e3
+    linear_combination (3 * (n : ℚ) / 2) * e1 - (1 / 2) * e2 - 3 * e3
+  exact_mod_cast hq
+
+end Count
 
 end SovietScience.Obukhov1969
