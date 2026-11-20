@@ -1,0 +1,90 @@
+id: 1906-markov-law-large-numbers-dependent
+subject: probability
+title_original: Распространение закона больших чисел на величины, зависящие друг от друга
+title_en: Extension of the law of large numbers to quantities depending on each other
+authors: [A. A. Markov]
+year: 1906
+language: ru
+source: >
+  Izvestiya Fiziko-matematicheskogo obshchestva pri Kazanskom universitete (Bulletin de la
+  Société physico-mathématique de Kasan), 2nd series, 15 (1906), no. 4, 135–156. The issue is
+  dated 1906; the text is signed 16 January and 25 March 1907.
+links:
+  - https://dspace.spbu.ru/items/088210fb-8460-489c-808c-05b4103f9963
+summary: >
+  The paper in which Markov chains first appear. Markov notes that Chebyshev's proof of the law
+  of large numbers only needs the variance of the sum to grow more slowly than n², and shows this
+  happens for some dependent quantities: when the correlations are negative (§1), for a sequence
+  of trials in which the chance of an event depends only on whether it occurred at the previous
+  trial (§2, with the exact correlations pq(p' − p'')^{k−l}), and for a general chain with
+  finitely many values and positive transition probabilities (§5, by a contraction argument for
+  conditional expectations). An urn of Pólya type (§4) shows the law can fail under dependence.
+existing_translations:
+  - >
+    "Extension of the law of large numbers to quantities, depending on each other (1906).
+    Reprint", Journal Électronique d'Histoire des Probabilités et de la Statistique 2(1b) (2006),
+    article 10, 12 pp. (English; the source of the reprinted translation was not checked).
+copyright:
+  status: public-domain
+  note: >
+    Author died 1922 and the paper was published in 1906 (the issue appeared in 1907): public
+    domain in Russia (life + 70 years expired in 1992; the wartime extension applies only to
+    authors who worked during or fought in the 1941–45 war) and in the US (published before
+    1931). Scan in the St Petersburg University repository; no scan is included here.
+translation:
+  status: complete
+  translators: [Claude (AI draft)]
+  reviewed_by: []
+lean:
+  module: SovietLean.Probability.Markov1906
+  results:
+    - label: Introduction — Chebyshev's principle (E(Sₙ − ∑aᵢ)²/n² → 0 ⇒ law of large numbers)
+      decl: SovietLean.Markov1906.chebyshev_principle
+    - label: p. 138 — the identity (z₁ + ⋯ + zₙ)² = ∑ z_k² + 2 z₁z₂ + 2(z₁ + z₂)z₃ + ⋯
+      decl: SovietLean.Markov1906.sq_sum_eq
+    - label: p. 138 — Chebyshev's inequality for oppositely ordered sequences
+      decl: SovietLean.Markov1906.chebyshev_sum_le
+    - label: §1 — negative products z_l z_k ⇒ law of large numbers
+      decl: SovietLean.Markov1906.lln_of_cov_nonpos
+    - label: §5, p. 155 — |E z_l z_k| ≤ D H^{k−l} ⇒ E(z₁ + ⋯ + zₙ)² ≤ Gn ⇒ law of large numbers
+      decl: SovietLean.Markov1906.lln_of_cov_decay
+    - label: §2, p. 140 — p = pp' + qp''
+      decl: SovietLean.Markov1906.IsSimpleChain.stationary
+    - label: §2, p. 141 — R_m = p + q(p' − p'')^m
+      decl: SovietLean.Markov1906.R_eq
+    - label: §2, p. 141 — P(A at trials l and l + m) = p R_m
+      decl: SovietLean.Markov1906.IsSimpleChain.prob_both
+    - label: §2, p. 142 — E z_l z_{l+m} = pq(p' − p'')^m
+      decl: SovietLean.Markov1906.IsSimpleChain.cov_eq
+    - label: §2, p. 142 — E(z₁ + ⋯ + zₙ)² ≤ npq when p' ≤ p''
+      decl: SovietLean.Markov1906.IsSimpleChain.second_moment_le_of_nonpos
+    - label: §2, p. 142 — E(z₁ + ⋯ + zₙ)² ≤ npq(1 + p' − p'')/(1 − p' + p'') when p' ≥ p''
+      decl: SovietLean.Markov1906.IsSimpleChain.second_moment_le_of_nonneg
+    - label: §2 — law of large numbers for the two-state chain (frequency of A → p)
+      decl: SovietLean.Markov1906.IsSimpleChain.lln
+    - label: §3, p. 144 — Ω_{k+1} − (p'ξ + q'')Ω_k + (p' − p'')ξΩ_{k−1} = 0
+      decl: SovietLean.Markov1906.Omega_recurrence
+    - label: §3, p. 145 — B = (p'' − p')(qξ + p)
+      decl: SovietLean.Markov1906.numerator_B
+    - label: §5, p. 152 — A^{(i)} lies between the extremes of A^{(i−1)}
+      decl: SovietLean.Markov1906.T_mem
+    - label: §5, p. 153 — A^{(i)}_α − A^{(i)}_β ≤ h Δ^{(i−1)}
+      decl: SovietLean.Markov1906.T_sub_le
+    - label: §5, p. 153 — h < 1 when all p_{α,γ} are positive
+      decl: SovietLean.Markov1906.h_lt_one
+    - label: §5, p. 154 — Δ^{(i)} ≤ H^i Δ^{(0)}
+      decl: SovietLean.Markov1906.iterate_spread
+    - label: §5, p. 154 — all A^{(i)}_α tend to one limit a, within C H^i
+      decl: SovietLean.Markov1906.iterate_tendsto
+    - label: §5, p. 152 — a_{k+i} = ∑ p^{(k)}_α A^{(i)}_α
+      decl: SovietLean.Markov1906.IsChain.integral_eq_sum_iterate
+    - label: §5, p. 155 — |E z_l z_{l+i}| ≤ D H^i
+      decl: SovietLean.Markov1906.IsChain.abs_cov_le
+    - label: §5 — law of large numbers for a chain with positive transition probabilities
+      decl: SovietLean.Markov1906.IsChain.lln
+contributors: [Michal Shavit]
+help_wanted: >
+  Formalize §4: for the urn in which each ball drawn is returned with another of the same
+  colour, prove the variance formula ∑ (m − na/(a+b))² P^{a,b}_{m,n} = nab(n+a+b)/((a+b)²(a+b+1))
+  and that the law of large numbers fails. Also derive the §3 recurrences for U_{m,k}, V_{m,k}
+  from the hypotheses of §2, so that Ω_k is the probability generating function.

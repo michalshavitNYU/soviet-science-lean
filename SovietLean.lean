@@ -10,6 +10,7 @@ public import SovietLean.Probability.Kolmogorov1928MaximalInequality
 public import SovietLean.Probability.Kolmogorov1941LogNormal
 public import SovietLean.Turbulence.Obukhov1969IntegralInvariants
 public import SovietLean.Probability.Kolmogorov1937Crystallization
+public import SovietLean.Probability.Markov1906
 public import SovietLean.Analysis.Luzin1912
 public import SovietLean.HighEnergy.Friedmann1922
 public import SovietLean.Logic.Kolmogorov1925
