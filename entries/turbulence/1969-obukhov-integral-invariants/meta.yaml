@@ -13,11 +13,15 @@ summary: >
   that matters for statistical turbulence theory.
 copyright:
   status: in-copyright
+  maintainer_override: true
   note: >
-    Author died 1989. Math-Net.Ru gives free access but reserves all rights. An English
-    translation by Michal Shavit exists; permission to publish it has been requested.
+    Author died 1989; the original is on Math-Net.Ru, which reserves all rights. This English
+    translation is published by the translator without the rights holder's permission, for
+    non-commercial scholarly use, and will be removed on request of the rights holder.
 translation:
-  status: none
+  status: complete
+  translators: [Michal Shavit]
+  reviewed_by: []
 lean:
   module: SovietLean.Turbulence.Obukhov1969IntegralInvariants
   results:

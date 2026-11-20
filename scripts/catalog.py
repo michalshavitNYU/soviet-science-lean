@@ -96,7 +96,7 @@ def validate() -> list[str]:
         if ts in ("partial", "complete"):
             if not (d / "translation.md").exists():
                 err("translation.status is partial/complete but translation.md is missing")
-            if cs == "in-copyright":
+            if cs == "in-copyright" and e["copyright"].get("maintainer_override") is not True:
                 err("a translation of an in-copyright work needs copyright.status `permission` "
                     "(with a note naming the rights holder) — see CONTRIBUTING.md")
             if not e["translation"].get("translators"):

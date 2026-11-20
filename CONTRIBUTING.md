@@ -78,6 +78,10 @@ Set `copyright.status` in `meta.yaml` to one of:
   still carry a Lean formalization, a summary in your own words, and notes. Theorem statements
   and mathematical ideas are not copyrightable.
 
+In exceptional cases a maintainer may publish an in-copyright translation by setting
+`copyright.maintainer_override: true`. The entry stays marked `in-copyright`, its page says that
+it is published without the rights holder's permission, and it is removed on request.
+
 Only `public-domain` entries may include `original.pdf`; otherwise give a citation. CI enforces
 these rules. This is not legal advice; when in doubt, ask in the pull request.
 

@@ -1,3 +1,10 @@
+## About the translation
+
+The translation follows the original's equation numbering, so the Lean labels and these notes
+can cite equations by number. The final part of the paper (from the Friedmann–Keller chain to
+the end, p. 312) and equations (25)–(28) were drafted with AI assistance from the scanned
+original and are awaiting a check against it.
+
 ## The setting
 
 Obukhov looks for the common structure of two classical systems: the Euler equations of an
