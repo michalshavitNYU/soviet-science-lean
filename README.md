@@ -9,6 +9,7 @@ probability, analysis, logic & foundations, and high-energy physics & gravitatio
   one record per work, with metadata, translation, notes, Lean source and the machine-checked
   status of every formalized theorem.
 - **Contribute:** see [CONTRIBUTING.md](CONTRIBUTING.md).
+- **Plan for further papers:** [docs/plan.pdf](docs/plan.pdf) (source: [docs/plan.tex](docs/plan.tex)).
 
 ## How it works
 

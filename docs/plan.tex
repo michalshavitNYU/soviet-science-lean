@@ -1,0 +1,170 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,english]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,tabularx,array}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\setlist{itemsep=2pt,topsep=3pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\ru}[1]{\foreignlanguage{russian}{#1}}
+\newcommand{\verify}{\textsuperscript{\color{gray}\,[v]}}
+
+\title{SovietLean: plan for further papers}
+\author{Working document, 20 November 2026}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent SovietLean (\emph{Soviet Science, Verified}) pairs Soviet and Russian papers in mathematics and physics with English translations and Lean~4 formalizations. Site: \url{https://michalshavitnyu.github.io/soviet-science-lean/}. This note records where the dataset stands, which papers to add next and why, and the procedure for adding one, written so that any contributor or coding agent can follow it.
+
+\paragraph{How to read the lists.} Citations below are from general knowledge unless the paper is already an entry. Items marked \verify{} have details (volume, pages, year, existence of an English translation) that must be checked against a scan or a library record before an entry is made. Copyright judgements are first assessments and are re-checked per entry.
+
+\section{Where the dataset stands}
+
+Thirteen entries, all at Lean level \emph{proved}: 134 audited results, using only the standard axioms (\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}), no \texttt{sorry}.
+
+\medskip
+\begin{tabularx}{\linewidth}{@{}l l Y l@{}}
+\toprule
+Entry & Subject & Lean content & Translation \\
+\midrule
+Markov 1906 & Probability & chains, LLN for dependent variables, finite-chain contraction & hosted (PD) \\
+Egorov 1911 & Analysis & Egorov's theorem with his measure bound & hosted (PD) \\
+Luzin 1912 & Analysis & Lusin's theorem and converse, proved from scratch & hosted (PD) \\
+Friedmann 1922 & Gravitation & first integral, static world, cycloid periodic world & hosted (PD) \\
+Friedmann 1924 & Gravitation & negative curvature: no static world, open world & hosted (PD) \\
+Kolmogorov 1925 & Logic & double-negation translation into minimal logic & private draft \\
+Kolmogorov 1928 & Probability & maximal inequality & none \\
+Kolmogorov 1933 & Probability & zero--one law & none \\
+Kolmogorov 1937 (KPP) & Analysis & linear speed selection $c\ge 2\sqrt{\alpha D}$ & none \\
+Kolmogorov 1937 & Probability & crystallization (Kolmogorov--Avrami) & hosted (override) \\
+Kolmogorov 1941 & Probability & log-normal grinding law, lineage form & none \\
+Gelfand 1941 & Analysis & nonempty spectrum, spectral radius, Gelfand--Mazur & none \\
+Obukhov 1969 & Turbulence & integral invariants, dimension count $n(n+2)(n-2)/3$ & hosted (override) \\
+\bottomrule
+\end{tabularx}
+
+\medskip\noindent
+PD = public domain. ``Override'' means an in-copyright translation published by maintainer decision under \texttt{copyright.maintainer\_override}; the page says so and it is removed on request. No translation has yet been checked by a human second reader.
+
+\section{How papers are chosen}
+
+A paper is a good candidate when it scores well on three counts.
+\begin{enumerate}
+\item \textbf{Copyright.} We can host a translation without permission only if the work is in the public domain in Russia \emph{and} in the US. In practice: the author died before 1956 (Russian term: life $+70$, plus 4 years for authors who worked during the 1941--45 war), and the work was published before 1931 (US term for foreign works). Otherwise the entry carries Lean and our own notes, and a translation needs permission from the rights holder.
+\item \textbf{Not already in English.} The main Soviet journals were translated cover to cover from the mid-1950s (\emph{ZhETF} from 1955, \emph{Teoriya Veroyatnostei} from 1956, \emph{Doklady} mathematics and \emph{Uspekhi} from 1960, \emph{Mat.\ Sbornik} and \emph{Izvestiya} from 1967). Untranslated material is therefore mostly pre-1960, outside selected-works volumes.
+\item \textbf{Lean feasibility.} The paper's main statements can be stated faithfully in Mathlib today, and at least the core can be fully proved. Papers that need missing foundations (Lorentzian geometry, general PDE theory) are fine if a self-contained part can be done honestly.
+\end{enumerate}
+
+\section{Next papers}
+
+\subsection{Tier A: public domain, Lean-ready (do first)}
+
+These can be hosted in full and proved with what Mathlib already has or close to it.
+
+\medskip
+\begin{tabularx}{\linewidth}{@{}p{4.3cm} Y p{3.1cm}@{}}
+\toprule
+Paper & What to formalize & Subject, effort \\
+\midrule
+\textbf{Suslin 1917}, ``Sur une définition des ensembles mesurables $B$ sans nombres transfinis'', \emph{C.\,R.} 164, 88--91\verify &
+The note that founds descriptive set theory, correcting Lebesgue: a set is Borel iff it and its complement are analytic. Mathlib has analytic sets and Suslin's separation theorem. Pair with Luzin's companion note in the same issue\verify. &
+Analysis; short \\
+\textbf{Urysohn 1925}, ``Zum Metrisationsproblem'', \emph{Math.\ Ann.} 94, 309--315\verify &
+Every second-countable regular (normal) Hausdorff space is metrizable. In Mathlib. Short paper. Urysohn died 1924; published 1925. &
+Analysis (topology); short \\
+\textbf{Urysohn 1925}, ``Über die Mächtigkeit der zusammenhängenden Mengen'', \emph{Math.\ Ann.} 94, 262--295\verify &
+Where Urysohn's lemma appears; formalize the lemma and the paper's cardinality theorem for connected normal spaces if feasible. Long paper: translation may be partial. &
+Analysis; medium \\
+\textbf{Schnirelmann 1930}, \ru{«Об аддитивных свойствах чисел»}, \emph{Izv.\ Donskogo Politekhn.\ Inst.} 14, 3--28\verify &
+Schnirelmann density, $\sigma(A+B)\ge\sigma(A)+\sigma(B)-\sigma(A)\sigma(B)$, every integer is a sum of boundedly many primes. Mathlib has Schnirelmann density. Schnirelmann died 1938, published 1930: PD if the year is confirmed. &
+New subject: number theory; medium \\
+\textbf{Chebyshev 1867}, ``Des valeurs moyennes'', \emph{J.\ Math.\ Pures Appl.} (2) 12, 177--184\verify &
+Chebyshev's inequality and his law of large numbers. Easy in Mathlib; links naturally to Markov 1906. &
+Probability; short \\
+\textbf{Markov 1913}, the \emph{Eugene Onegin} statistics, \emph{Izv.\ Imp.\ Akad.\ Nauk} (6) 7, 153--162\verify &
+The first application of chains to text. Reuses the two-state chain of Markov 1906; formalize his variance formulas. An English translation exists (2006)\verify, so the value is the Lean and the link. &
+Probability; short \\
+\textbf{Kovalevskaya 1875}, ``Zur Theorie der partiellen Differentialgleichungen'', \emph{J.\ reine angew.\ Math.} 80, 1--32\verify &
+The Cauchy--Kovalevskaya theorem is out of reach, but her counterexample is not: the formal power-series solution of the heat equation with data $1/(1-x)$ diverges. Formalize that, plus the majorant lemma. &
+Analysis; medium \\
+\textbf{Kovalevskaya 1889}, ``Sur le problème de la rotation d'un corps solide autour d'un point fixe'', \emph{Acta Math.} 12, 177--232\verify &
+The Kovalevskaya top: her fourth integral is conserved by the Euler--Poisson equations. A polynomial identity plus \texttt{HasDerivAt}, very feasible. &
+New subject: mechanics; medium \\
+\textbf{Zhukovsky 1906}, \ru{«О присоединённых вихрях»} (On attached vortices)\verify &
+The lift theorem $L=\rho V\Gamma$ for a 2D cylinder with circulation, via a contour integral (Blasius formula). Mathlib has circle integrals and residues. &
+Turbulence (fluids); medium \\
+\textbf{Lyapunov 1901}, ``Nouvelle forme du théorème sur la limite de probabilité'', \emph{Mém.\ Acad.\ Sci.\ St-Pétersbourg} (8) 12\verify &
+The CLT without identical distribution under the Lyapunov condition. Mathlib has the i.i.d.\ CLT only, so this is a stretch target; the moment lemmas are a good first step. &
+Probability; hard \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Tier B: in copyright, Lean-native}
+
+Entries with Lean and our own notes. A translation is drafted privately (in \texttt{sovietlean-drafts/}) and published only with permission or an explicit override.
+
+\begin{itemize}
+\item \textbf{Bernstein 1912}, ``Démonstration du théorème de Weierstrass fondée sur le calcul des probabilités'', \emph{Comm.\ Soc.\ Math.\ Kharkov} (2) 13\verify. Two pages; Bernstein polynomials are in Mathlib. Public domain in the US (1912) but not in Russia (Bernstein died 1968).
+\item \textbf{Kolmogorov 1931}, ``Über die analytischen Methoden in der Wahrscheinlichkeitsrechnung'', \emph{Math.\ Ann.} 104, 415--458\verify. Forward and backward equations; the finite-state case is a clean target.
+\item \textbf{Kolmogorov 1932}, ``Zur Deutung der intuitionistischen Logik'', \emph{Math.\ Z.} 35, 58--65\verify. The calculus of problems; companion to the 1925 entry, and a root of the propositions-as-types reading behind Lean itself.
+\item \textbf{Kolmogorov 1936}, Markov chains with countably many states, \emph{Mat.\ Sbornik} 1(43)\verify. Ergodic theorem; the finite case extends Markov 1906.
+\item \textbf{Kolmogorov 1941}, the three turbulence notes in \emph{Doklady} 30--32\verify. The dimensional argument and the algebra behind the $4/5$ law (from the K\'arm\'an--Howarth equation) are formalizable; the physics hypotheses become explicit assumptions.
+\item \textbf{Kolmogorov 1954}, KAM note, \emph{Doklady} 98, 527--530\verify. The small-divisor lemma (almost every frequency vector is Diophantine) is feasible; the theorem itself is not.
+\item \textbf{Kolmogorov 1958}, entropy of dynamical systems, \emph{Doklady} 119, 861--864\verify. Ambitious: Kolmogorov--Sinai entropy is not in Mathlib.
+\item \textbf{Kantorovich 1942}, ``On the translocation of masses'', \emph{Doklady} 37\verify. Duality for the finite transport problem. An English translation exists, so the value is the Lean.
+\item \textbf{Gelfand--Naimark 1943}, \emph{Mat.\ Sbornik} 12(54)\verify. Commutative case in Mathlib (\texttt{gelfandStarTransform}); completes the Gelfand 1941 entry's story.
+\end{itemize}
+
+\subsection{Tier C: finish what is open in current entries}
+
+Each entry lists these under \texttt{help\_wanted}; they are often quicker than a new paper.
+
+\begin{itemize}
+\item \textbf{Luzin 1912}: Theorems I and II on derivatives (no continuous function has derivative $\pm\infty$ on a set of positive measure; every a.e.\ finite measurable function is a.e.\ a derivative). State carefully first.
+\item \textbf{KPP 1937}: existence of monotone fronts for every $c\ge 2\sqrt{\alpha D}$ (phase plane), and convergence from step data to the minimal-speed front. Needs the original French text.
+\item \textbf{Gelfand 1941}: the Gelfand representation itself.
+\item \textbf{Friedmann 1922}: the integral formula $t_\pi=\pi A/c$ as an improper integral; the roots $\Theta(\lambda,A)$, $\vartheta(\lambda,A)$; periodicity for $\lambda<0$. Also recheck his age estimate ($\sim10^{9}$ vs.\ ``10 billion'' years).
+\item \textbf{Friedmann 1924}: the stationary analysis of \S2.1--2 and periodicity for $\lambda<0$.
+\item \textbf{Kolmogorov 1925}: the quantifier part of chapter V.
+\item \textbf{Kolmogorov 1928}: locate the inequality in the paper; the convergence criterion for random series.
+\item \textbf{Kolmogorov 1937}: the limit from the product to the exponential (Eq.\ 1 to Eq.\ 2), ideally from a space--time Poisson process.
+\item \textbf{Kolmogorov 1941}: the population statement of the log-normal law.
+\item \textbf{Markov 1906}: \S4, the urn with replacement (variance formula; failure of the law), and the \S3 recurrences from the chain hypotheses.
+\item \textbf{Obukhov 1969}: the canonical form for $n=3$ and the closing result on the Friedmann--Keller chain with Millionshchikov's closure.
+\end{itemize}
+
+\subsection{Tier D: work that is not Lean}
+
+\begin{itemize}
+\item \textbf{Proofreading.} All hosted translations except Obukhov's are AI drafts. A reader of the source language should check each against the scan and be added to \texttt{reviewed\_by}. Priority: Markov 1906 and Friedmann 1922 (most read), then Luzin, Egorov, Friedmann 1924, Kolmogorov 1937.
+\item \textbf{Permissions.} The Obukhov request (draft in \texttt{Downloads/obukhov-1969-permission-request.md}) is unsent. A permission route for Kolmogorov's estate would unlock the Kolmogorov 1925 draft and Tier B translations.
+\item \textbf{Scans.} KPP 1937 needs a French scan (\emph{Bull.\ Univ.\ Moscou}). Gallica blocks automated access; Internet Archive, Math-Net.Ru, HathiTrust and university repositories have worked.
+\item \textbf{Site.} A ``help wanted'' page that collects Tier C items across entries.
+\end{itemize}
+
+\section{Procedure for adding an entry}
+
+This is the procedure used so far. It is written for a person or a coding agent; it does not depend on any particular tool.
+
+\begin{enumerate}
+\item \textbf{Read first:} \texttt{README.md}, \texttt{CONTRIBUTING.md}, \texttt{scripts/catalog.py}, \texttt{subjects.yaml}, and two existing entries of the same kind (e.g.\ Markov 1906 for a public-domain entry with translation, KPP 1937 for Lean only).
+\item \textbf{Work outside Dropbox, on a branch.} One git worktree per paper, e.g.\\
+\texttt{git worktree add \textasciitilde/sovietlean-worktrees/<name> -b entry/<name>}\\
+then link the shared Mathlib build: \texttt{mkdir -p .lake \&\& ln -s \textasciitilde/lean-packages/mathlib-v4.35.0 .lake/packages}. Lean and Mathlib are v4.35.0; do not run \texttt{lake update}.
+\item \textbf{Read the paper} from a real scan before writing anything. Use its notation and its equation numbers. Never translate or cite from memory; mark anything illegible or unverified under ``To check'' in \texttt{notes.md}.
+\item \textbf{Lean.} One file \texttt{SovietLean/<Subject>/<AuthorYear>.lean} in the module style of the existing files, with a docstring saying how each formal statement matches the paper and where variables were changed. Add one \texttt{public import} line to \texttt{SovietLean.lean}. Prefer fewer theorems, fully proved. No \texttt{axiom}; \texttt{sorry} only for a faithful statement that is explicitly listed as open.
+\item \textbf{Entry folder} \texttt{entries/<subject>/<id>/}: \texttt{meta.yaml}, \texttt{notes.md} (plain prose, a table ``What the Lean file proves'', a ``To check'' list) and, if allowed, \texttt{translation.md}. An AI translation opens with an italic line naming the source scan and saying it is an unreviewed AI draft; \texttt{translators: [Claude (AI draft)]} (or the model used), \texttt{reviewed\_by: []}. Link the scan; do not commit PDFs of the original.
+\item \textbf{Check:} \texttt{lake build}, then \texttt{python3 scripts/catalog.py validate} and \texttt{python3 scripts/catalog.py audit}. CI runs the same and fails on any non-standard axiom.
+\item \textbf{Review before merging.} A second reader (a person, or a separate agent) compares the main Lean statements with the paper: a proved theorem about the wrong statement is the main risk, and the axiom audit cannot catch it. Then merge into \texttt{main}, rebuild, re-audit, push, and check the live page renders (no KaTeX errors).
+\end{enumerate}
+
+\paragraph{Suggested next batch.} Suslin 1917 with Luzin's companion note, Urysohn's metrization paper, Schnirelmann 1930 (after confirming its year), and Kovalevskaya 1889: four public-domain papers, four subjects, each with a clear provable core.
+
+\end{document}
