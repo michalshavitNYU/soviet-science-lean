@@ -22,7 +22,7 @@ entries/<subject>/<year>-<author>-<short-title>/
   meta.yaml          required — bibliographic data and status
   translation.md     the English translation (Markdown, math in $…$ and $$…$$)
   notes.md           translator's and formalizer's notes: terminology, errata, context
-SovietScience/<Subject>/<Author><Year><Topic>.lean   the Lean formalization
+SovietLean/<Subject>/<Author><Year><Topic>.lean   the Lean formalization
 ```
 
 Copy `templates/entry/` to start. The comments in `templates/entry/meta.yaml` explain each field.
@@ -46,13 +46,13 @@ Entries marked *help wanted* have open proofs.
 
 - Start the file with `module`, use `public import Mathlib…`, and put declarations after
   `@[expose] public section`.
-- Put everything in `namespace SovietScience.<AuthorYear>`.
+- Put everything in `namespace SovietLean.<AuthorYear>`.
 - In the module docstring, quote or paraphrase the source statement and say **how the formal
   version matches it**: which hypotheses were made explicit, what a phrase like "almost surely" or
   "the tail field" became. A reviewer checks this match, not just that the file compiles.
 - If Mathlib already proves the result, it is fine to prove yours by citing it; credit the
   Mathlib authors in the docstring.
-- Add your module to `SovietScience.lean`.
+- Add your module to `SovietLean.lean`.
 
 ## Translations
 

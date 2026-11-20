@@ -15,14 +15,14 @@ copyright:
 translation:
   status: none
 lean:
-  module: SovietScience.Analysis.Gelfand1941NormedRings
+  module: SovietLean.Analysis.Gelfand1941NormedRings
   results:
     - label: Nonempty spectrum
-      decl: SovietScience.Gelfand1941.spectrum_nonempty
+      decl: SovietLean.Gelfand1941.spectrum_nonempty
     - label: Spectral radius formula
-      decl: SovietScience.Gelfand1941.spectral_radius_formula
+      decl: SovietLean.Gelfand1941.spectral_radius_formula
     - label: Gelfand–Mazur theorem
-      decl: SovietScience.Gelfand1941.gelfand_mazur
+      decl: SovietLean.Gelfand1941.gelfand_mazur
 contributors: [Michal Shavit]
 help_wanted: >
   Formalize the paper's central result, the Gelfand representation: a commutative Banach algebra

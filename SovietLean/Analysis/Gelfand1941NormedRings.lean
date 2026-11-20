@@ -33,7 +33,7 @@ authors); this file records the match with the source.
 open Filter Topology
 open scoped NNReal ENNReal
 
-namespace SovietScience.Gelfand1941
+namespace SovietLean.Gelfand1941
 
 variable {A : Type*} [NormedRing A] [NormedAlgebra ℂ A] [CompleteSpace A]
 
@@ -52,4 +52,4 @@ theorem gelfand_mazur (hA : ∀ {a : A}, IsUnit a ↔ a ≠ 0) (a : A) :
     ∃! z : ℂ, algebraMap ℂ A z = a :=
   (NormedRing.algEquivComplexOfComplete hA).bijective.existsUnique a
 
-end SovietScience.Gelfand1941
+end SovietLean.Gelfand1941

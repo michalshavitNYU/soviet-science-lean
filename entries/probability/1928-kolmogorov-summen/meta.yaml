@@ -15,10 +15,10 @@ copyright:
 translation:
   status: none
 lean:
-  module: SovietScience.Probability.Kolmogorov1928MaximalInequality
+  module: SovietLean.Probability.Kolmogorov1928MaximalInequality
   results:
     - label: Maximal inequality
-      decl: SovietScience.Kolmogorov1928.maximal_inequality
+      decl: SovietLean.Kolmogorov1928.maximal_inequality
 contributors: [Michal Shavit]
 help_wanted: >
   Find where the inequality is stated in the paper (section and page) and use that as the

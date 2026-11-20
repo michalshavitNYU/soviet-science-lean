@@ -49,7 +49,7 @@ Two remarks on matching the source.
 
 open Finset
 
-namespace SovietScience.Obukhov1969
+namespace SovietLean.Obukhov1969
 
 variable {n : ℕ}
 
@@ -515,4 +515,4 @@ theorem finrank_shtSpace (n : ℕ) (hn : 2 ≤ n) :
 
 end Count
 
-end SovietScience.Obukhov1969
+end SovietLean.Obukhov1969

@@ -37,7 +37,7 @@ Kolmogorov's setting); independence is `iIndepFun X μ`. The maximum is `Finset.
 open MeasureTheory ProbabilityTheory Finset
 open scoped NNReal ENNReal
 
-namespace SovietScience.Kolmogorov1928
+namespace SovietLean.Kolmogorov1928
 
 variable {Ω : Type*} [mΩ : MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 
@@ -183,4 +183,4 @@ theorem maximal_inequality (X : ℕ → Ω → ℝ) (hmeas : ∀ i, Measurable (
   rw [le_div_iff₀ (by positivity)]
   linarith
 
-end SovietScience.Kolmogorov1928
+end SovietLean.Kolmogorov1928

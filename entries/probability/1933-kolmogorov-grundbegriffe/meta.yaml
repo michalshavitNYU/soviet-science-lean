@@ -17,10 +17,10 @@ copyright:
 translation:
   status: none
 lean:
-  module: SovietScience.Probability.Kolmogorov1933ZeroOne
+  module: SovietLean.Probability.Kolmogorov1933ZeroOne
   results:
     - label: Appendix — zero-one law (σ-algebra form)
-      decl: SovietScience.Kolmogorov1933.zero_one_law
+      decl: SovietLean.Kolmogorov1933.zero_one_law
     - label: Appendix — zero-one law (random-variable form)
-      decl: SovietScience.Kolmogorov1933.zero_one_law_of_random_variables
+      decl: SovietLean.Kolmogorov1933.zero_one_law_of_random_variables
 contributors: [Michal Shavit]

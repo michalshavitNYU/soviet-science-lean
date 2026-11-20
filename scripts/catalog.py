@@ -52,7 +52,7 @@ def lean_path(module: str) -> Path:
 
 
 def root_imports() -> set[str]:
-    text = (ROOT / "SovietScience.lean").read_text()
+    text = (ROOT / "SovietLean.lean").read_text()
     return set(re.findall(r"^(?:public )?import (\S+)", text, re.M))
 
 
@@ -109,7 +109,7 @@ def validate() -> list[str]:
             if not lean_path(mod).exists():
                 err(f"lean.module `{mod}` has no file {lean_path(mod).relative_to(ROOT)}")
             if mod not in imports:
-                err(f"lean.module `{mod}` is not imported in SovietScience.lean")
+                err(f"lean.module `{mod}` is not imported in SovietLean.lean")
             res = lean.get("results") or []
             if not res:
                 err("lean.results must list at least one {label, decl}")
@@ -129,7 +129,7 @@ def audit() -> dict:
     decls = [r["decl"] for e in entries if e.get("lean") for r in e["lean"]["results"]]
     status: dict = {"decls": {}, "entries": {}}
     if decls:
-        src = "import SovietScience\n" + "".join(f"#print axioms {d}\n" for d in decls)
+        src = "import SovietLean\n" + "".join(f"#print axioms {d}\n" for d in decls)
         probe = ROOT / "scripts" / "_audit.lean"
         probe.write_text(src)
         proc = subprocess.run(["lake", "env", "lean", str(probe)], cwd=ROOT,

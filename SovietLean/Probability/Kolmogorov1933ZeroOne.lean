@@ -24,7 +24,7 @@ by Rémy Degenne); this file records the match between the source and the librar
 
 open MeasureTheory Filter
 
-namespace SovietScience.Kolmogorov1933
+namespace SovietLean.Kolmogorov1933
 
 variable {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω}
 
@@ -44,4 +44,4 @@ theorem zero_one_law_of_random_variables (x : ℕ → Ω → ℝ) (hx : ∀ n, M
     μ A = 0 ∨ μ A = 1 :=
   zero_one_law _ (fun n ↦ (hx n).comap_le) h_indep hA
 
-end SovietScience.Kolmogorov1933
+end SovietLean.Kolmogorov1933

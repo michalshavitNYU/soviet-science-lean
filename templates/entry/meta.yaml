@@ -18,9 +18,9 @@ translation:
   translators: []
   reviewed_by: []
 lean:                                 # delete this whole block if there is no Lean file
-  module: SovietScience.Turbulence.Kolmogorov1941LocalStructure
+  module: SovietLean.Turbulence.Kolmogorov1941LocalStructure
   results:                            # each result you formalized, in the paper's numbering
     - label: Theorem 1
-      decl: SovietScience.Kolmogorov1941.theorem_1
+      decl: SovietLean.Kolmogorov1941.theorem_1
 contributors: [Your Name]
 # help_wanted: Describe an open proof or an untranslated section, if you want help.

@@ -15,9 +15,9 @@ explicit and what each informal phrase became.
 
 @[expose] public section
 
-namespace SovietScience.AuthorYear
+namespace SovietLean.AuthorYear
 
 -- theorem theorem_1 ... := by
 --   sorry
 
-end SovietScience.AuthorYear
+end SovietLean.AuthorYear

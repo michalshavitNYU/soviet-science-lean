@@ -19,22 +19,22 @@ copyright:
 translation:
   status: none
 lean:
-  module: SovietScience.Turbulence.Obukhov1969IntegralInvariants
+  module: SovietLean.Turbulence.Obukhov1969IntegralInvariants
   results:
     - label: Eq. (11) ⇒ (9) — the cyclic condition gives energy conservation (identity)
-      decl: SovietScience.Obukhov1969.energy_identity
+      decl: SovietLean.Obukhov1969.energy_identity
     - label: Eq. (9) — energy is constant along solutions
-      decl: SovietScience.Obukhov1969.energy_conserved
+      decl: SovietLean.Obukhov1969.energy_conserved
     - label: Eq. (6) ⇔ (7) — volume preservation iff V_j = 0
-      decl: SovietScience.Obukhov1969.divergence_free_iff
+      decl: SovietLean.Obukhov1969.divergence_free_iff
     - label: The Boltzmann distribution is stationary
-      decl: SovietScience.Obukhov1969.boltzmann_stationary
+      decl: SovietLean.Obukhov1969.boltzmann_stationary
     - label: n = 3 canonical form is a system of hydrodynamic type iff p + q + r = 0
-      decl: SovietScience.Obukhov1969.canonical_cyclic
+      decl: SovietLean.Obukhov1969.canonical_cyclic
     - label: n = 3 — energy and the second integral I are conserved
-      decl: SovietScience.Obukhov1969.rigid_body_integrals
+      decl: SovietLean.Obukhov1969.rigid_body_integrals
     - label: N = n(n+2)(n−2)/3 independent components
-      decl: SovietScience.Obukhov1969.finrank_shtSpace
+      decl: SovietLean.Obukhov1969.finrank_shtSpace
 contributors: [Michal Shavit]
 help_wanted: >
   State and prove the paper's claim that every n = 3 system can be rotated into canonical

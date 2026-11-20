@@ -1,7 +1,7 @@
-name = "SovietScience"
+name = "SovietLean"
 version = "0.1.0"
 keywords = ["math", "physics", "translation"]
-defaultTargets = ["SovietScience"]
+defaultTargets = ["SovietLean"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -17,4 +17,4 @@ scope = "leanprover-community"
 rev = "v4.35.0"
 
 [[lean_lib]]
-name = "SovietScience"
+name = "SovietLean"

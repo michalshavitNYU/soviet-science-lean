@@ -15,7 +15,7 @@ probability, analysis and high-energy physics.
 ```
 entries/<subject>/<id>/meta.yaml   ─┐
 entries/<subject>/<id>/*.md        ─┼─► scripts/catalog.py ─► _site/ (GitHub Pages)
-SovietScience/**/*.lean ─► lake build ─► #print axioms ─► status.json ─┘
+SovietLean/**/*.lean ─► lake build ─► #print axioms ─► status.json ─┘
 ```
 
 Each change runs CI: it validates the metadata, builds the Lean library against Mathlib,
@@ -27,7 +27,7 @@ the site and dataset. A Lean level shown on the site is always the one CI comput
 | Path | Contents |
 |---|---|
 | `entries/` | one folder per work, grouped by subject |
-| `SovietScience/` | the Lean library (Lean `v4.35.0`, Mathlib `v4.35.0`) |
+| `SovietLean/` | the Lean library (Lean `v4.35.0`, Mathlib `v4.35.0`) |
 | `subjects.yaml` | the subject list |
 | `scripts/catalog.py` | validation, axiom audit, site and dataset builder |
 | `site/assets/` | stylesheet and catalogue filter |
