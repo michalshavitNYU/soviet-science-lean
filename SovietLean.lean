@@ -14,3 +14,4 @@ public import SovietLean.Probability.Markov1906
 public import SovietLean.Analysis.Luzin1912
 public import SovietLean.HighEnergy.Friedmann1922
 public import SovietLean.Logic.Kolmogorov1925
+public import SovietLean.HighEnergy.Friedmann1924
