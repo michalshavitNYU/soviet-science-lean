@@ -1,4 +1,4 @@
-# Soviet Science, Verified
+# SovietLean — Soviet Science, Verified
 
 An open dataset of Soviet mathematics and physics: **English translations** paired with
 **Lean 4 formalizations** of the main results, starting with four subjects: turbulence,

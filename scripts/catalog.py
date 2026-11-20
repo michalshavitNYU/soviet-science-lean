@@ -196,11 +196,11 @@ def page(title: str, body: str, depth: int = 0) -> str:
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{html.escape(title)}</title>
+<title>{html.escape(title if title.startswith(CONFIG["name"]) else title + " · " + CONFIG["name"])}</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <link rel="stylesheet" href="{up}assets/style.css">
 </head><body>
-<header class="top"><a class="brand" href="{up}index.html">{html.escape(CONFIG["title"])}</a>
+<header class="top"><a class="brand" href="{up}index.html">{html.escape(CONFIG["name"])}</a>
 <nav><a href="{up}index.html">Catalogue</a><a href="{up}contribute.html">Contribute</a>
 <a href="{up}dataset.html">Dataset</a><a href="{repo}">GitHub</a></nav></header>
 <main>{body}</main>
@@ -274,13 +274,14 @@ def build_site() -> None:
                     f'entries yet. <a href="contribute.html">Contribute the first one.</a></div>'
                     for s in SUBJECTS if not counts[s["id"]])
     blurbs = "".join(f'<li><b>{html.escape(s["name"])}</b> — {html.escape(s["blurb"])}</li>' for s in SUBJECTS)
-    index = f"""<section class="hero"><h1>{html.escape(CONFIG['title'])}</h1>
+    index = f"""<section class="hero"><h1>{html.escape(CONFIG['name'])}</h1>
+<p class="subtitle">{html.escape(CONFIG['title'])}</p>
 <p>{html.escape(CONFIG['tagline'])}</p><ul class="subjects">{blurbs}</ul></section>
 <div class="filters"><div class="tabs">{tabs}</div>
 <label><input type="checkbox" id="only-proved"> Lean-proved only</label>
 <label><input type="checkbox" id="only-tr"> Has translation</label></div>
 <div class="grid">{''.join(cards)}</div>{empty}"""
-    (SITE / "index.html").write_text(page(CONFIG["title"], index))
+    (SITE / "index.html").write_text(page(f"{CONFIG['name']} — {CONFIG['title']}", index))
 
     # entry pages
     for e, r in zip(entries, rows):
@@ -315,7 +316,7 @@ def build_site() -> None:
             parts.append(f'<h2>Notes</h2><article>{md(r["notes_text"])}</article>')
         bib = (f"@misc{{{r['id'].replace('-', '_')},\n  author = {{{' and '.join(r['authors'])}}},\n"
                f"  title = {{{r['title_original']}}},\n  year = {{{r['year']}}},\n"
-               f"  note = {{{r['source']} {CONFIG['title']} entry: {CONFIG['site_url']}/e/{r['id']}.html}}\n}}")
+               f"  note = {{{r['source']} {CONFIG['name']} entry: {CONFIG['site_url']}/e/{r['id']}.html}}\n}}")
         parts.append(f"<h2>Cite</h2><pre><code>{html.escape(bib)}</code></pre>")
         parts.append(f'<p><a href="{CONFIG["repo_url"]}/tree/{CONFIG["branch"]}/entries/{r["subject"]}/{r["id"]}">'
                      "Edit this entry on GitHub</a></p>")
