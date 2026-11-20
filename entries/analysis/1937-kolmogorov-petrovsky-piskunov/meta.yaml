@@ -1,0 +1,60 @@
+id: 1937-kolmogorov-petrovsky-piskunov
+subject: analysis
+title_original: Étude de l'équation de la diffusion avec croissance de la quantité de matière et son application à un problème biologique
+title_en: Study of the diffusion equation with growth of the quantity of matter and its application to a biological problem
+authors: [A. N. Kolmogorov, I. G. Petrovsky, N. S. Piskunov]
+year: 1937
+language: fr
+source: >
+  Bulletin de l'Université d'État à Moscou, Série internationale, Section A, Mathématiques et
+  Mécanique 1(6) (1937), 1–25. Zbl 0018.32106.
+summary: >
+  Studies the reaction-diffusion equation u_t = D u_xx + F(u) with F(0) = F(1) = 0 and
+  F'(0) = α > 0, motivated by the spread of an advantageous gene through a population. Shows
+  that a step initial state develops into a front whose speed tends to 2√(αD), the least speed
+  at which a travelling front exists. With Fisher's paper of the same year it founds the theory
+  of travelling fronts in reaction-diffusion equations.
+existing_translations:
+  - >
+    "Study of the diffusion equation with increase in the amount of substance, and its
+    application to a biological problem", transl. V. M. Volosov, in Selected Works of
+    A. N. Kolmogorov, Vol. I (V. M. Tikhomirov, ed.), Kluwer, 1991, pp. 248–270 (as cited
+    secondhand; not checked against the book).
+  - >
+    English translation in P. Pelcé (ed.), Dynamics of Curved Fronts, Academic Press, 1988,
+    pp. 105–130 (as cited secondhand; not checked against the book).
+copyright:
+  status: in-copyright
+  note: >
+    Kolmogorov died 1987, Petrovsky 1973, Piskunov 1977. No translation is hosted here; the
+    entry carries notes and Lean only.
+translation:
+  status: none
+lean:
+  module: SovietLean.Analysis.KPP1937
+  results:
+    - label: Linearization ahead of the front — e^{-μ(x−ct)} solves u_t = D u_xx + αu iff c = Dμ + α/μ
+      decl: SovietLean.KPP1937.linear_exp_solves_iff
+    - label: Dispersion relation is at least 2√(αD) for every μ > 0
+      decl: SovietLean.KPP1937.two_sqrt_le_speed
+    - label: The bound 2√(αD) is attained at μ = √(α/D)
+      decl: SovietLean.KPP1937.speed_at_optimum
+    - label: 2√(αD) is the least speed of a decaying exponential solution of the linearization
+      decl: SovietLean.KPP1937.minSpeed_isLeast
+    - label: No decaying exponential solution of the linearization travels slower than 2√(αD)
+      decl: SovietLean.KPP1937.no_slow_exponential
+    - label: Travelling-wave reduction u = U(x − ct) ⇔ D U'' + c U' + F(U) = 0
+      decl: SovietLean.KPP1937.travelling_wave_iff
+    - label: Exponential tail e^{-μξ} of the linearized profile equation ⇔ Dμ² − cμ + α = 0
+      decl: SovietLean.KPP1937.exp_profile_iff
+    - label: A real decay rate exists iff c² ≥ 4αD
+      decl: SovietLean.KPP1937.exists_real_rate_iff
+    - label: For c ≥ 0, c² ≥ 4αD iff c ≥ 2√(αD)
+      decl: SovietLean.KPP1937.sq_ge_iff_ge_two_sqrt
+contributors: [Michal Shavit]
+help_wanted: >
+  State and prove the paper's main theorems in its own numbering: existence of a monotone
+  travelling front for every speed c ≥ 2√(αD) (phase-plane argument for D U'' + c U' + F(U) = 0),
+  and convergence of the solution with step initial data to the front of minimal speed. This
+  needs someone with access to the original French text to fix the exact hypotheses on F and
+  cite the paper's section and equation numbers in the labels.
